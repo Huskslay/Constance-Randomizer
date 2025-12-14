@@ -1,0 +1,155 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>CreateRandomizer</AssemblyName>
+		<Product>Huskslay - CreateRandomizer</Product>
+		<RootNamespace>CreateRandomizer</RootNamespace>
+		<Version>0.0.1</Version>
+
+		<GameName>Constance</GameName>
+		<SteamRefs>G:\SteamLibrary\steamapps\common</SteamRefs>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>latest</LangVersion>
+		<RestoreAdditionalProjectSources>
+			https://api.nuget.org/v3/index.json;
+			https://nuget.bepinex.dev/v3/index.json;
+			https://nuget.samboy.dev/v3/index.json
+		</RestoreAdditionalProjectSources>
+
+		<GameRefs>$(SteamRefs)\$(GameName)</GameRefs>
+		<BepRefs>$(GameRefs)\BepInEx\plugins</BepRefs>
+		<ManagedRefs>$(GameRefs)\$(GameName)_Data\Managed</ManagedRefs>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+		<PackageReference Include="BepInEx.Core" Version="5.*" />
+		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+		<PackageReference Include="UnityEngine.Modules" Version="6000.0.50" IncludeAssets="compile" />
+	</ItemGroup>
+  
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="CheatMenu">
+			<HintPath>$(BepRefs)\Huskslay - Randomizer\CheatMenu.dll</HintPath>
+		</Reference>
+		<Reference Include="FileHandler">
+			<HintPath>..\FileHandler\bin\Debug\netstandard2.1\FileHandler.dll</HintPath>
+		</Reference>
+		<Reference Include="RandomizerCore">
+			<HintPath>..\RandomizerCore\bin\Debug\netstandard2.1\RandomizerCore.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Btf.BtfUnityTools.Runtime" Publicize="true">
+			<HintPath>$(ManagedRefs)\Btf.BtfUnityTools.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Audio" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Audio.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Characters.Player" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Characters.Player.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Core" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Academy" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Academy.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Carnival" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Carnival.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Foundry" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Foundry.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Junction" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Junction.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Other" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Other.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Peak" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Peak.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Vaults" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Vaults.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Creatures.Voids" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Creatures.Voids.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Entities" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Entities.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Flashbacks" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Flashbacks.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Misc" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Misc.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Playground" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Playground.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Rendering" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Rendering.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.Ui" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.Ui.dll</HintPath>
+		</Reference>
+		<Reference Include="Constance.World" Publicize="true">
+			<HintPath>$(ManagedRefs)\Constance.World.dll</HintPath>
+		</Reference>
+		<Reference Include="DOTween" Publicize="true">
+			<HintPath>bin\Debug\netstandard2.1\DOTween.dll</HintPath>
+		</Reference>
+		<Reference Include="MoreMountains.Tools">
+			<HintPath>$(ManagedRefs)\MoreMountains.Tools.dll</HintPath>
+		</Reference>
+		<Reference Include="Newtonsoft.Json" Publicize="true">
+			<HintPath>$(ManagedRefs)\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+		<Reference Include="Sonity.Internal.Runtime" Publicize="true">
+			<HintPath>$(ManagedRefs)\Sonity.Internal.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Sonity.Public.Runtime" Publicize="true">
+			<HintPath>$(ManagedRefs)\Sonity.Public.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="UniTask" Publicize="true">
+			<HintPath>$(ManagedRefs)\UniTask.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.In1tSystem" Publicize="true">
+			<HintPath>$(ManagedRefs)\Unity.InputSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="Leo.Scripts" Publicize="true">
+			<HintPath>$(ManagedRefs)\Leo.Scripts.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Localization" Publicize="true">
+			<HintPath>..\RandomizerCore\bin\Debug\netstandard2.1\Unity.Localization.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.TextMeshPro" Publicize="true">
+			<HintPath>..\RandomizerCore\bin\Debug\netstandard2.1\Unity.TextMeshPro.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule" Publicize="true">
+			<HintPath>$(ManagedRefs)\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI" Publicize="true">
+			<HintPath>$(ManagedRefs)\UnityEngine.UI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="bin\Debug\$(TargetFramework)\$(AssemblyName).dll" DestinationFolder="$(BepRefs)\Huskslay - Randomizer\" />
+	</Target>
+</Project>
