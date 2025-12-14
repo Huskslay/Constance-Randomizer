@@ -44,6 +44,11 @@ public static class RandomSearch
             foreach (RandomStateElement element in randoMap.Values)
             {
                 if (element.isRandomized) element.dest = null;
+                else
+                {
+                    foundItems |= element.source.GetSavedData().givenItems;
+                    foundEvents |= element.source.GetSavedData().givenEvents;
+                }
             }
 
             List<ALocation> toRando = [];
