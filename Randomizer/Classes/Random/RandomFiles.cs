@@ -4,6 +4,7 @@ using Randomizer.Classes.Random.Generation;
 using Randomizer.Classes.UI.Elements;
 using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.Storage.Requirements.Entries;
 using System.Collections.Generic;
 
 namespace Randomizer.Classes.Random;
@@ -64,7 +65,7 @@ public static class RandomFiles
 
         SerializeState current = SerializeState.Constructor(RandomState.Instance);
 
-        generator.GenerateRandom(current.seed, current.includedItems, current.includedSkips, current.foundItems, current.foundEvents, out List<Spoiler> spoilerLog, current);
+        generator.GenerateRandom(current.seed, current.includedItems, current.includedSkips, ItemEntries.None, EventsEntries.None, out List<Spoiler> spoilerLog, current);
         if (!FileSaveLoader.TrySaveClassToJson(spoilerLog, folder, spoiler, CConSaveStateManager.LoadedSaveStateId, logSuccess: false))
         {
             Plugin.Logger.LogWarning("Error occured when saving the spoiler");

@@ -1,14 +1,8 @@
 ﻿using Constance;
-using Newtonsoft.Json.Utilities;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace RandomizerCore.Classes.Handlers.State;
@@ -37,6 +31,7 @@ public class RandomState(int seed, RandomizableItems includedItems, SkipEntries 
     public static void Init(IStateGenerator generatorMethod)
     {
         generator = generatorMethod;
+        onLocationGet.AddListener(FindItem);
     }
 
     public static void TryLoadRandomizerState()
@@ -99,14 +94,21 @@ public class RandomState(int seed, RandomizableItems includedItems, SkipEntries 
             return;
         }
 
-        FindItem(element.dest.GiveItems());
+        element.dest.GiveItems();
         element.hasObtainedSource = true;
         onLocationGet?.Invoke(element);
     }
 
-    private static void FindItem(ItemEntries item)
+    private static void FindItem(RandomStateElement element)
     {
-        Instance.FoundItems |= item;
+        LocationSavedData saveData = element.dest.GetSavedData();
+        Instance.FoundItems |= saveData.givenItems;
+        if (saveData.givenEvents > EventsEntries.None) AchieveEvents(saveData.givenEvents);
+    }
+    public static void AchieveEvents(EventsEntries events)
+    {
+        Plugin.Logger.LogMessage($"Given event {events}");
+        Instance.FoundEvents |= events;
     }
 
     public static void AddFoundCousin(ConLevelId id)

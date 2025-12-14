@@ -59,11 +59,11 @@ public abstract class ALocation : ISavedDataOwner<LocationSavedData>
         this.regionName = regionName;
     }
 
-
+    
     public virtual void Init()
     { }
 
-    public ItemEntries GiveItems()
+    public void GiveItems()
     {
         Plugin.Logger.LogMessage($"Giving '{GetFullName()}'");
 
@@ -71,7 +71,6 @@ public abstract class ALocation : ISavedDataOwner<LocationSavedData>
         IConPlayerInventory inventoryManager = ConMonoBehaviour.SceneRegistry.Inventory;
 
         GetItem().GiveToPlayer(player, inventoryManager);
-        return GetSavedData().givenItems;
     }
 
 

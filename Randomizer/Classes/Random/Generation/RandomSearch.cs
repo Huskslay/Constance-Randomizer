@@ -27,7 +27,7 @@ public static class RandomSearch
     private static SkipEntries allowedSkips;
     private static bool finalSearch = false;
 
-    public static Dictionary<string, RandomStateElement> Generate(ref System.Random rand, Dictionary<string, RandomStateElement> randoMap, List<ALocation> toRandomize, SkipEntries allowedSkips, ItemEntries foundItems, EventsEntries foundEvents)
+    public static Dictionary<string, RandomStateElement> Generate(ref System.Random rand, Dictionary<string, RandomStateElement> randoMap, List<ALocation> toRandomize, SkipEntries allowedSkips)
     {
         if (!RegionHandler.TryGetTransitionFromDestinationCheckpoint(searchCheckpointId, out Transition start)) {
             Plugin.Logger.LogError($"Could not find start transition '{start}' for generation");
@@ -41,6 +41,12 @@ public static class RandomSearch
         {
             Plugin.Logger.LogMessage($"Attempt {i + 1}");
 
+            List<ALocation> toRando = [];
+            List<ALocation> important = [];
+            int newFoundCousins = 0;
+            ItemEntries foundItems = ItemEntries.None;
+            EventsEntries foundEvents = EventsEntries.None;
+
             foreach (RandomStateElement element in randoMap.Values)
             {
                 if (element.isRandomized) element.dest = null;
@@ -51,16 +57,10 @@ public static class RandomSearch
                 }
             }
 
-            List<ALocation> toRando = [];
-            List<ALocation> important = []; 
-            ItemEntries newFoundItems = foundItems;
-            EventsEntries newFoundEvents = foundEvents;
-            int newFoundCousins = 0;
-
             foreach (Region region in RegionHandler.Regions)
             {
                 foreach (EventRequirement requirement in region.GetSavedData().obtainableEvents.requirements)
-                    newFoundEvents |= requirement.evnt;
+                    foundEvents |= requirement.evnt;
             }
             foreach (ALocation item in toRandomize)
             {
@@ -68,23 +68,23 @@ public static class RandomSearch
                     || item.GetSavedData().givenEvents > 0)
                 {
                     important.Add(item);
-                    newFoundItems |= item.GetSavedData().givenItems;
-                    newFoundEvents |= item.GetSavedData().givenEvents;
+                    foundItems |= item.GetSavedData().givenItems;
+                    foundEvents |= item.GetSavedData().givenEvents;
                     if (item.GetSavedData().givenItems.HasFlag(ItemEntries.Cousin)) newFoundCousins++;
                 }
                 else toRando.Add(item);
             }
-            if (ValidateFoundAll(newFoundItems, newFoundEvents, newFoundCousins)) break;
+            if (ValidateFoundAll(foundItems, foundEvents, newFoundCousins)) break;
 
 
             List<ALocation> reachable;
-            newFoundItems = foundItems;
-            newFoundEvents = foundEvents;
+            foundItems = ItemEntries.None;
+            foundEvents = EventsEntries.None;
             newFoundCousins = 0;
 
             while (important.Count > 0)
             {
-                reachable = GetReachableUnrandodLocations(ref randoMap, newFoundItems, newFoundEvents, newFoundCousins, start, out EventsEntries reachedEvents);
+                reachable = GetReachableUnrandodLocations(ref randoMap, foundItems, foundEvents, newFoundCousins, start, out EventsEntries reachedEvents);
                 if (reachable.Count == 0) break;
 
                 int chosenReachable = rand.Next(reachable.Count);
@@ -94,8 +94,8 @@ public static class RandomSearch
                 ItemEntries newItems = important[chosenImportant].GetSavedData().givenItems;
                 reachedEvents |= important[chosenImportant].GetSavedData().givenEvents;
 
-                newFoundItems |= newItems;
-                newFoundEvents |= reachedEvents;
+                foundItems |= newItems;
+                foundEvents |= reachedEvents;
                 if (newItems.HasFlag(ItemEntries.Cousin)) newFoundCousins++;
                 important.RemoveAt(chosenImportant);
             }
@@ -105,11 +105,11 @@ public static class RandomSearch
                     Plugin.Logger.LogWarning($"Did not find {location.GetFullName()}");
                 continue; 
             }
-            if (ValidateFoundAll(newFoundItems, newFoundEvents, newFoundCousins)) break;
+            if (ValidateFoundAll(foundItems, foundEvents, newFoundCousins)) break;
 
 
             finalSearch = true;
-            reachable = GetReachableUnrandodLocations(ref randoMap, newFoundItems, newFoundEvents, newFoundCousins, start, out _);
+            reachable = GetReachableUnrandodLocations(ref randoMap, foundItems, foundEvents, newFoundCousins, start, out _);
             finalSearch = false;
 
             if (reachable.Count != toRando.Count) {

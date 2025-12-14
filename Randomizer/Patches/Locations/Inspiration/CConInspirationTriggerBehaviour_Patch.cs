@@ -20,7 +20,13 @@ public class CConInspirationTriggerBehaviour_Patch
         if (!RandomState.Randomized) return;
         if (!RandomState.IsRandomized(RandomizableItems.Inspirations)) return;
 
-        ALocation location = __instance.GetComponent<LocationComponent>().Location;
+        LocationComponent comp = __instance.GetComponent<LocationComponent>();
+        if (comp == null)
+        {
+            Plugin.Logger.LogWarning($"Inspiration '{__instance.name}' is not randomized");
+            return;
+        }
+        ALocation location = comp.Location;
         RandomState.TryGetItem(location);
 
         __instance.FinishCollection();
@@ -28,11 +34,12 @@ public class CConInspirationTriggerBehaviour_Patch
 
     [HarmonyPrefix]
     [HarmonyPatch(nameof(CConInspirationTriggerBehaviour.Start))]
-    private static bool Start_Prefix()
+    private static bool Start_Prefix(CConInspirationTriggerBehaviour __instance)
     {
         if (!RandomState.Randomized) return true;
         if (!RandomState.IsRandomized(RandomizableItems.Inspirations)) return true;
 
-        return false;
+        LocationComponent comp = __instance.GetComponent<LocationComponent>();
+        return comp == null;
     }
 }

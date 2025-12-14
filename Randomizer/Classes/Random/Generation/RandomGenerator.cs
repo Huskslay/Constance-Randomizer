@@ -49,7 +49,7 @@ public class RandomGenerator : IStateGenerator
             return null;
         }
 
-        randoMap = RandomSearch.Generate(ref rand, randoMap, toRando, allowedSkips, foundItems, foundEvents);
+        randoMap = RandomSearch.Generate(ref rand, randoMap, toRando, allowedSkips);
         if (randoMap == null) return null;
         RandomState state = new(seed, items, allowedSkips, foundItems, foundEvents, randoMap, []);
 
