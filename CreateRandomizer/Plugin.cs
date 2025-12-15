@@ -3,7 +3,6 @@ using BepInEx.Logging;
 using CheatMenu.Classes;
 using Constance;
 using CreateRandomizer.Classes;
-using CreateRandomizer.Classes.Data;
 using CreateRandomizer.Classes.Pages.Data;
 using CreateRandomizer.Classes.Pages.Locations;
 using CreateRandomizer.Classes.Pages.Regions;
@@ -30,7 +29,6 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
         Transform = transform;
 
-        DataHandler.Init();
         SceneHandler.Init();
         InitializeModGUI();
 

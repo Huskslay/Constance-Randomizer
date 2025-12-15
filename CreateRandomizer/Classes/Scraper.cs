@@ -95,7 +95,7 @@ public class Scraper : MonoBehaviour
         foreach (Region region in RegionHandler.Regions)
         {
             PostScraper.Run(region, transitionInfos[region.GetFullName()]);
-            FileSaveLoader.TrySaveClassToFile(region, "Regions", region.GetFullName(), logSuccess: false);
+            RegionHandler.SaveRegion(region, log: false);
         }
 
 
@@ -138,7 +138,7 @@ public class Scraper : MonoBehaviour
         Plugin.Logger.LogMessage($"Found: {deposits.Count} Deposits, {chests.Count} Chests, {canvases.Count} Canvases, {inspirations.Count} Inspirations, {shopItems.Count} Shop Items, {dropBehaviours.Count} Drop Behaviours, {foundryPipes.Count} Foundry Pipes, {isACousin} Cousin");
 
         Region region = new(levelId, transitions, elevator, deposits, chests, canvases, inspirations, shopItems, dropBehaviours, foundryPipes, cousin);
-        Running = FileSaveLoader.TrySaveClassToFile(region, "Regions", region.GetFullName());
+        RegionHandler.SaveRegion(region, log: false);
 
 
         CConLevel_Adventure level = FindFirstObjectByType<CConLevel_Adventure>();
@@ -172,6 +172,6 @@ public class Scraper : MonoBehaviour
         }
 
         exitRegion.SetTearLocation(progressiveItem, level.tearUnlock);
-        Running = FileSaveLoader.TrySaveClassToFile(exitRegion, "Regions", exitRegion.GetFullName());
+        RegionHandler.SaveRegion(exitRegion, log: false);
     }
 }

@@ -192,6 +192,7 @@ public static class PageHelpers
             GUI.backgroundColor = enabled ? Color.green : Color.red;
             if (GUILayout.Button(value.ToString())) neededEntry.items ^= value;
         }
+        GUI.backgroundColor = bg;
         GUILayout.EndHorizontal();
 
 

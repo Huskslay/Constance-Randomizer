@@ -1,13 +1,8 @@
 ﻿using Constance;
-using CreateRandomizer.Classes.Data;
-using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
-using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements;
-using RandomizerCore.Classes.Storage.Requirements.Entries;
 using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
 using RandomizerCore.Classes.Storage.Transitions;
 using RandomizerCore.Classes.Storage.Transitions.Types;
@@ -31,7 +26,7 @@ public class PostScraper : MonoBehaviour
         // Saved Data
         RegionSavedData savedData = RegionSavedData(region);
         region.SetSavedData(savedData);
-        FileSaveLoader.TrySaveClassToJson(savedData, "Region Saved Data", savedData.GetConnection(), logSuccess: false);
+        RegionHandler.SaveSaveData(savedData, log: false);
     }
 
     private static void Locations(Region region)
@@ -41,7 +36,7 @@ public class PostScraper : MonoBehaviour
             // Saved Data
             LocationSavedData savedData = LocationSavedData(region, location);
             location.SetSavedData(savedData);
-            FileSaveLoader.TrySaveClassToJson(savedData, "Location Saved Data", savedData.GetConnection(), logSuccess: false);
+            RegionHandler.SaveSaveData(savedData, log: false);
         }
     }
 
@@ -69,14 +64,14 @@ public class PostScraper : MonoBehaviour
         {
             TransitionSavedData savedData = TransitionSavedData(region, transition);
             transition.SetSavedData(savedData);
-            FileSaveLoader.TrySaveClassToJson(savedData, "Transition Saved Data", savedData.GetConnection(), logSuccess: false);
+            RegionHandler.SaveSaveData(savedData, log: false);
         }
         // Elevator requirements
         if (region.elevator != null)
         {
             TransitionSavedData savedData = TransitionSavedData(region, region.elevator, true);
             region.elevator.SetSavedData(savedData);
-            FileSaveLoader.TrySaveClassToJson(savedData, "Transition Saved Data", savedData.GetConnection(), logSuccess: false);
+            RegionHandler.SaveSaveData(savedData, log: false);
         }
     }
     

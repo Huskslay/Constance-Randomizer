@@ -1,16 +1,9 @@
 ﻿using CheatMenu.Classes;
-using Constance;
-using CreateRandomizer.Classes.Data;
-using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
-using RandomizerCore.Classes.Storage.Requirements;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
-using RandomizerCore.Classes.Storage.Transitions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -121,7 +114,7 @@ public class LocationSoloPage : SoloGUIPage
 
         if (getMonos != null) if (GUILayout.Button("Teleport")) StartCoroutine(PageHelpers.LoadLocation(Location, getMonos));
 
-        FileSaveLoader.TrySaveClassToJson(Location.GetSavedData(), "Location Saved Data", Location.GetSavedData().GetConnection(), logSuccess: false);
+        RegionHandler.SaveSaveData(Location.GetSavedData(), log: false);
     }
 
     public override void Close()

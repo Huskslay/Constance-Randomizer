@@ -1,15 +1,8 @@
 ﻿using CheatMenu.Classes;
 using Constance;
-using CreateRandomizer.Classes.Data;
-using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Storage;
-using RandomizerCore.Classes.Storage.Requirements;
-using RandomizerCore.Classes.Storage.Requirements.Entries;
 using RandomizerCore.Classes.Storage.Transitions;
 using RandomizerCore.Classes.Storage.Transitions.Types;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CreateRandomizer.Classes.Pages.Transitions;
@@ -117,7 +110,7 @@ public class TransitionSoloPage : SoloGUIPage
             if (GUILayout.Button((savedData.doOverrideTransition ? "Jank " : "") + "Teleport")) StartCoroutine(PageHelpers.LoadTransition((Transition)ATransition));
         }
 
-        FileSaveLoader.TrySaveClassToJson(savedData, "Transition Saved Data", savedData.GetConnection(), logSuccess: false);
+        RegionHandler.SaveSaveData(savedData, log: false);
     }
 
 

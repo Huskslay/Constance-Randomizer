@@ -1,6 +1,5 @@
 ﻿using CheatMenu.Classes;
 using Constance;
-using CreateRandomizer.Classes.Data;
 using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;

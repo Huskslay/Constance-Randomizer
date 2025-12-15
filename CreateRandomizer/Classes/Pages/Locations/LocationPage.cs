@@ -1,5 +1,4 @@
 ﻿using CheatMenu.Classes;
-using CreateRandomizer.Classes.Data;
 using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Locations;

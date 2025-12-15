@@ -6,6 +6,7 @@ using HarmonyLib;
 using Mono.Cecil;
 using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Storage.Items;
+using RandomizerCore.Classes.Storage.Skips;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ public class Plugin : BaseUnityPlugin
     {
         Logger = base.Logger;
 
+        SkipDataHandler.Init();
         RegionHandler.Init();
         CollectableHandler.Init();
         ProgressiveItemHandler.Init();

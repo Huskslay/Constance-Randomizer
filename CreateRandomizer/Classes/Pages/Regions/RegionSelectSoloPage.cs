@@ -1,6 +1,5 @@
 ﻿using CheatMenu.Classes;
 using Constance;
-using CreateRandomizer.Classes.Data;
 using CreateRandomizer.Classes.Pages.Transitions;
 using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
@@ -86,7 +85,7 @@ public class RegionSelectSoloPage : SoloGUIPage
             savedData.obtainableEvents.requirements.Add(newReq);
         }
 
-        FileSaveLoader.TrySaveClassToJson(savedData, "Region Saved Data", savedData.GetConnection(), logSuccess: false);
+        RegionHandler.SaveSaveData(savedData, log: false);
     }
 
 

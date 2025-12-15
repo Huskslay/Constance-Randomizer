@@ -18,17 +18,24 @@ namespace RandomizerCore.Classes.Handlers;
 
 public static class RegionHandler
 {
+    private static readonly string regionDataFolder = "Regions";
     public static List<Region> Regions { get; private set; }
 
 
+    private static readonly string regionSavedDataFolder = "Region Saved Data";
     private static List<RegionSavedData> regionSavedData;
     public static List<RegionSavedData> RegionSavedData => regionSavedData;
 
+
+    private static readonly string transitionSavedDataFolder = "Transition Saved Data";
     private static List<TransitionSavedData> transitionSavedData;
     public static List<TransitionSavedData> TransitionSavedData => transitionSavedData;
 
+
+    private static readonly string locationSavedDataFolder = "Location Saved Data";
     private static List<LocationSavedData> locationSavedData;
     public static List<LocationSavedData> LocationSavedData => locationSavedData;
+
 
 
     private static List<ElevatorTransition> allElevatorTransitions = null;
@@ -41,10 +48,10 @@ public static class RegionHandler
 
         LoadRegions();
         List<ISavedDataOwner<RegionSavedData>> regions = Regions.ConvertAll(x => (ISavedDataOwner<RegionSavedData>)x);
-        LoadSavedData(ref regionSavedData, regions, "Region Saved Data");
+        LoadSavedData(ref regionSavedData, regions, regionSavedDataFolder);
 
         List<ISavedDataOwner<LocationSavedData>> locations = PrepLocations();
-        LoadSavedData(ref locationSavedData, locations, "Location Saved Data");
+        LoadSavedData(ref locationSavedData, locations, locationSavedDataFolder);
 
         List<ISavedDataOwner<TransitionSavedData>> transitions = PrepTransitions();
         LoadSavedData(ref transitionSavedData, transitions, "Transition Saved Data");
@@ -139,6 +146,22 @@ public static class RegionHandler
 
         Plugin.Logger.LogMessage($"{savedDatas.Count} saved datas found");
         if (owners.Count > 0) Plugin.Logger.LogError($"{owners.Count} owners do not contain saved data");
+    }
+    public static void SaveRegion(Region region, bool log)
+    {
+        FileSaveLoader.TrySaveClassToJson(region, regionDataFolder, region.GetFullName(), logSuccess: log);
+    }
+    public static void SaveSaveData(RegionSavedData data, bool log)
+    {
+        FileSaveLoader.TrySaveClassToJson(data, regionSavedDataFolder, data.GetConnection(), logSuccess: log);
+    }
+    public static void SaveSaveData(TransitionSavedData data, bool log)
+    {
+        FileSaveLoader.TrySaveClassToJson(data, transitionSavedDataFolder, data.GetConnection(), logSuccess: log);
+    }
+    public static void SaveSaveData(LocationSavedData data, bool log)
+    {
+        FileSaveLoader.TrySaveClassToJson(data, locationSavedDataFolder, data.GetConnection(), logSuccess: log);
     }
 
 
