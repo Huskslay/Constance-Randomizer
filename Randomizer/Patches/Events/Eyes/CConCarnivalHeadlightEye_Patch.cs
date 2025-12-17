@@ -1,6 +1,6 @@
 ﻿using Constance;
 using HarmonyLib;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
 
 namespace Randomizer.Patches.Events.Eyes;

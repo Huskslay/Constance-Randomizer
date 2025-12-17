@@ -1,17 +1,5 @@
-﻿using Constance;
-using CreateRandomizer;
-using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Storage;
-using RandomizerCore.Classes.Storage.Locations;
-using RandomizerCore.Classes.Storage.Transitions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using UnityEngine;
-using UnityEngine.Bindings;
 using UnityEngine.SceneManagement;
 
 namespace CreateRandomizer.Classes;

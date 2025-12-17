@@ -1,17 +1,8 @@
 ﻿using CheatMenu.Classes;
-using Constance;
-using CreateRandomizer.Classes.Pages.Transitions;
-using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Regions;
-using RandomizerCore.Classes.Storage.Requirements;
-using RandomizerCore.Classes.Storage.Requirements.Entries;
 using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
-using RandomizerCore.Classes.Storage.Transitions;
 using RandomizerCore.Classes.Storage.Transitions.Types;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CreateRandomizer.Classes.Pages.Regions;
@@ -78,7 +69,8 @@ public class RegionSelectSoloPage : SoloGUIPage
         if (GUILayout.Button("New event"))
         {
             EventRequirement newReq = new();
-            foreach (Transition transition in Region.transitions) {
+            foreach (Transition transition in Region.transitions)
+            {
                 newReq.requirements.Add(new());
                 newReq.requirements[^1].transition = transition.GetFullName();
             }

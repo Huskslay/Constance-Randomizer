@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
 using RandomizerCore.Classes.Adapters;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
-using UnityEngine;
-using Sonity;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
+using Sonity;
+using UnityEngine;
 
 namespace Randomizer.Patches.Locations.Deposit;
 

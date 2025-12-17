@@ -2,7 +2,6 @@
 using RandomizerCore.Classes.Storage.Locations;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RandomizerCore.Classes.Storage.Items.Types;
 

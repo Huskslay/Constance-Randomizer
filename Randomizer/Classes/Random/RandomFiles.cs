@@ -2,8 +2,7 @@
 using FileHandler.Classes;
 using Randomizer.Classes.Random.Generation;
 using Randomizer.Classes.UI.Elements;
-using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
 using System.Collections.Generic;
 

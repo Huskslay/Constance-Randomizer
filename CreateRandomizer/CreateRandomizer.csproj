@@ -7,7 +7,7 @@
 		<Version>0.1.0</Version>
 
 		<GameName>Constance</GameName>
-		<SteamRefs>G:\SteamLibrary\steamapps\common</SteamRefs>
+		<SteamRefs>C:\Program Files (x86)\Steam\steamapps\common</SteamRefs>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -112,7 +112,7 @@
 			<HintPath>$(ManagedRefs)\Constance.World.dll</HintPath>
 		</Reference>
 		<Reference Include="DOTween" Publicize="true">
-			<HintPath>bin\Debug\netstandard2.1\DOTween.dll</HintPath>
+			<HintPath>$(ManagedRefs)\DOTween.dll</HintPath>
 		</Reference>
 		<Reference Include="MoreMountains.Tools">
 			<HintPath>$(ManagedRefs)\MoreMountains.Tools.dll</HintPath>
@@ -136,10 +136,10 @@
 			<HintPath>$(ManagedRefs)\Leo.Scripts.dll</HintPath>
 		</Reference>
 		<Reference Include="Unity.Localization" Publicize="true">
-			<HintPath>..\RandomizerCore\bin\Debug\netstandard2.1\Unity.Localization.dll</HintPath>
+			<HintPath>$(ManagedRefs)\Unity.Localization.dll</HintPath>
 		</Reference>
 		<Reference Include="Unity.TextMeshPro" Publicize="true">
-			<HintPath>..\RandomizerCore\bin\Debug\netstandard2.1\Unity.TextMeshPro.dll</HintPath>
+			<HintPath>$(ManagedRefs)\Unity.TextMeshPro.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule" Publicize="true">
 			<HintPath>$(ManagedRefs)\UnityEngine.CoreModule.dll</HintPath>

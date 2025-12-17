@@ -1,7 +1,7 @@
 ﻿using Constance;
 using Randomizer.Classes.UI.Elements;
 using Randomizer.Patches.Menu;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

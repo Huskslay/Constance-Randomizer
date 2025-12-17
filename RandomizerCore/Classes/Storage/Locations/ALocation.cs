@@ -2,16 +2,12 @@
 using Newtonsoft.Json;
 using RandomizerCore.Classes.Adapters;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items;
-using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Regions;
-using RandomizerCore.Classes.Storage.Requirements;
-using RandomizerCore.Classes.Storage.Requirements.Entries;
 using RandomizerCore.Classes.Storage.Saved;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace RandomizerCore.Classes.Storage.Locations;
@@ -59,7 +55,7 @@ public abstract class ALocation : ISavedDataOwner<LocationSavedData>
         this.regionName = regionName;
     }
 
-    
+
     public virtual void Init()
     { }
 

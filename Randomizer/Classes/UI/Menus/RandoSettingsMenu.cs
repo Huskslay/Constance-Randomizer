@@ -1,7 +1,6 @@
 ﻿using Constance;
 using Randomizer.Classes.UI.Elements;
 using Randomizer.Patches.Menu;
-using System;
 using UnityEngine.EventSystems;
 
 namespace Randomizer.Classes.UI.Menus;
@@ -25,7 +24,7 @@ public class RandoSettingsMenu : AConStartMenuPanel, IConSelectionLayer, ITransf
     public void Init()
     {
         CConStartMenu_Patch.CreateButton($"Skip Into: {RandomLoader.skipIntro}", transform, ToggleSkipIntro);
-        
+
         seedInput = new(transform, "Seed: ", "0", OnUpdateSeed);
         GenerateRandomSeed(null);
         CConStartMenu_Patch.CreateButton($"Generate Random Seed", transform, GenerateRandomSeed);

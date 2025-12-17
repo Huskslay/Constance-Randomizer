@@ -48,7 +48,7 @@ public class LocationSoloPage : SoloGUIPage
         if (Location == null) return;
 
         Location.GetSavedData().completed = GUIElements.BoolValue("Completed", Location.GetSavedData().completed);
-        
+
         if (getMonos != null) if (GUILayout.Button("Teleport")) StartCoroutine(PageHelpers.LoadLocation(Location, getMonos));
 
         GUIElements.Line();

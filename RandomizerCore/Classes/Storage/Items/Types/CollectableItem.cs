@@ -1,6 +1,5 @@
 ﻿using Constance;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
 using RandomizerCore.Classes.Storage.Locations;
 using System;
 

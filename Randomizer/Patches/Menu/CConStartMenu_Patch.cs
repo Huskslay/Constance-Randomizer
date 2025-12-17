@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
 using Leo;
 using Randomizer.Classes.UI.Elements;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

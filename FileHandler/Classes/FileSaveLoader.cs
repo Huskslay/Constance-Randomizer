@@ -1,12 +1,10 @@
 ﻿using Constance;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using UnityEngine;
-using Newtonsoft.Json;
 
 namespace FileHandler.Classes;
 
@@ -27,7 +25,8 @@ public static class FileSaveLoader
     private static List<T> LoadClassesInner<T>(string folder, Func<string, string, ConSaveStateId?, T> loader, string extension, ConSaveStateId? id = null)
     {
         string path = GetFolderPath(id, folder);
-        if (path == null)  {
+        if (path == null)
+        {
             Plugin.Logger.LogError("An error occured loading class when getting directory");
             return null;
         }
@@ -48,7 +47,8 @@ public static class FileSaveLoader
     public static bool TrySaveClassToFile<T>(T cls, string folder, string fileName, ConSaveStateId? id = null, bool logSuccess = true)
     {
         string path = GetFilePath(id, folder, fileName, ext, createDir: true);
-        if (path == null) {
+        if (path == null)
+        {
             Plugin.Logger.LogError("An error occured saving class when getting directory");
             return false;
         }
@@ -72,7 +72,8 @@ public static class FileSaveLoader
     public static T LoadClassFromFile<T>(string folder, string fileName, ConSaveStateId? id = null)
     {
         string path = GetFilePath(id, folder, fileName, ext);
-        if (path == null) {
+        if (path == null)
+        {
             Plugin.Logger.LogError("An error occured loading class when getting directory");
             return default;
         }
@@ -99,7 +100,8 @@ public static class FileSaveLoader
     public static bool TrySaveClassToJson<T>(T cls, string folder, string fileName, ConSaveStateId? id = null, bool logSuccess = true, ConSaver conSaver = null)
     {
         string path = GetFilePath(id, folder, fileName, jsonExt, createDir: true, conSaver: conSaver);
-        if (path == null) {
+        if (path == null)
+        {
             Plugin.Logger.LogError("An error occured saving class when getting directory");
             return false;
         }
@@ -128,7 +130,8 @@ public static class FileSaveLoader
         T cls = default;
 
         string path = GetFilePath(id, folder, fileName, jsonExt);
-        if (path == null) {
+        if (path == null)
+        {
             Plugin.Logger.LogError("An error occured loading class when getting directory");
             return cls;
         }

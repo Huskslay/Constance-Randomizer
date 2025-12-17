@@ -1,10 +1,9 @@
 ﻿using Constance;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace RandomizerCore.Classes.Handlers;
 
@@ -13,7 +12,7 @@ public static class CollectableHandler
     public static List<SConCollectable> collectablesList;
 
     private static readonly List<string> collectableNames = [
-        "currency", 
+        "currency",
         "healFeather",
         "healFeatherPotion",
         "manaPiece",
@@ -43,7 +42,7 @@ public static class CollectableHandler
         "tearCarnival",
         "fridaMask"
     ];
-    
+
     private static readonly string inspirationsName = "inspirations";
     private static readonly string shopItemsName = "shopItems";
 
@@ -89,7 +88,7 @@ public static class CollectableHandler
                 collectablesList.Add(collectable);
                 dict.Add(collectable.name, collectable);
                 nameDict.Add(field.Name, collectable.name);
-                if (goal) goalsList.Add(collectable); 
+                if (goal) goalsList.Add(collectable);
             }
         }
         Plugin.Logger.LogMessage($"Found {collectablesList.Count} general collectables");

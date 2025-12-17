@@ -1,17 +1,11 @@
 ﻿using Constance;
-using Newtonsoft.Json;
-using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items;
 using RandomizerCore.Classes.Storage.Items.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
-using static Btf.Log.Logger;
 
 namespace RandomizerCore.Classes.Storage.Locations.Types;
 
@@ -27,8 +21,8 @@ public class CousinLocation : ALocation
     public override AItem GetItem() => item;
 
 
-    private readonly ConLevelId id; 
-    private readonly SConQuest.ConQuestIntel questIntel; 
+    private readonly ConLevelId id;
+    private readonly SConQuest.ConQuestIntel questIntel;
 
 
     public CousinLocation(CConBehaviour_LostShopKeeper cousin, Region region) : base(ConvertName(), cousin.name, region)

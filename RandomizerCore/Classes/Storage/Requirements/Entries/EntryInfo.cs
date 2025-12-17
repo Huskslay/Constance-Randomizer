@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RandomizerCore.Classes.Storage.Requirements.Entries;
 
@@ -17,7 +16,7 @@ public static class EntryInfo
 
     private readonly static ItemEntries dontDisplayItems = ItemEntries.MilkshakeInsp | ItemEntries.CloneTpInsp | ItemEntries.Cousin | ItemEntries.Tears;
 
-    
+
     public static bool SkipItemEntry(ItemEntries items, SkipEntries skips)
     {
         ItemEntries skip = ItemEntries.None;

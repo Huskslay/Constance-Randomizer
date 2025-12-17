@@ -1,9 +1,6 @@
 ﻿using RandomizerCore.Classes.Storage.Requirements.Entries;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace RandomizerCore.Classes.Handlers.State;
+namespace RandomizerCore.Classes.State;
 
 public interface IStateGenerator
 {

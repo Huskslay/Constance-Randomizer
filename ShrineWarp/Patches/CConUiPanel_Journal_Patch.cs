@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CheatMenu.Classes;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
 using ShrineWarp.Classes;
 

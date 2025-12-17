@@ -1,10 +1,4 @@
-﻿using RandomizerCore.Classes.Storage.Transitions;
-using RandomizerCore.Classes.Storage.Transitions.Types;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using static UnityEngine.UI.Selectable;
+﻿using System.Collections.Generic;
 
 namespace Randomizer.Classes.Random.Generation;
 
@@ -31,8 +25,9 @@ public class RandomSearchHolder<T, T2>
 
 
     public bool NotEmpty() { return open.Count > 0; }
-    public bool SkipSearch(T subject) { 
-        return closed.Contains(subject) || open.Contains(subject); 
+    public bool SkipSearch(T subject)
+    {
+        return closed.Contains(subject) || open.Contains(subject);
     }
 
 
@@ -40,14 +35,16 @@ public class RandomSearchHolder<T, T2>
 
 
     public void AddToOpen(List<T> subjects)
-    { 
-        foreach (T subject in subjects) {
+    {
+        foreach (T subject in subjects)
+        {
             if (!closed.Contains(subject) && !open.Contains(subject) && !future.Contains(subject))
                 open.Enqueue(subject);
         }
     }
-    public void AddToClosed(T subject) { 
-        if (!future.Contains(subject)) closed.Enqueue(subject); 
+    public void AddToClosed(T subject)
+    {
+        if (!future.Contains(subject)) closed.Enqueue(subject);
 
         // If the open is empty, check that the old and new futures are different, and if so, move futures into open to check them again
         if (open.Count == 0)

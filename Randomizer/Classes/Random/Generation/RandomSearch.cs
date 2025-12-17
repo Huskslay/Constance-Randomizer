@@ -1,17 +1,14 @@
 ﻿using Constance;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
-using RandomizerCore.Classes.Storage;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
-using RandomizerCore.Classes.Storage.Requirements.IRequirements;
 using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
 using RandomizerCore.Classes.Storage.Skips;
 using RandomizerCore.Classes.Storage.Transitions;
 using RandomizerCore.Classes.Storage.Transitions.Types;
-using Sonity;
 using System;
 using System.Collections.Generic;
 
@@ -30,7 +27,8 @@ public static class RandomSearch
 
     public static Dictionary<string, RandomStateElement> Generate(ref System.Random rand, Dictionary<string, RandomStateElement> randoMap, List<ALocation> toRandomize, SkipEntries allowedSkips)
     {
-        if (!RegionHandler.TryGetTransitionFromDestinationCheckpoint(searchCheckpointId, out Transition start)) {
+        if (!RegionHandler.TryGetTransitionFromDestinationCheckpoint(searchCheckpointId, out Transition start))
+        {
             Plugin.Logger.LogError($"Could not find start transition '{start}' for generation");
             return null;
         }
@@ -110,7 +108,8 @@ public static class RandomSearch
                 important.RemoveAt(chosenImportant);
             }
             // Did not manage to put in all important items before available spots ran out
-            if (important.Count > 0) { 
+            if (important.Count > 0)
+            {
                 Plugin.Logger.LogError("Failed to place all important locations");
                 foreach (ALocation location in important)
                     Plugin.Logger.LogWarning($"Did not find {location.GetFullName()}");
@@ -125,7 +124,8 @@ public static class RandomSearch
             ValidateFoundTransitions();
 
             // The amount reachable should be equal to the amount left to randomize
-            if (reachable.Count != toRando.Count) {
+            if (reachable.Count != toRando.Count)
+            {
 
                 Plugin.Logger.LogError($"Some locations cannot not reached after all importants put in {reachable.Count} / {toRando.Count}");
                 foreach (Region region in RegionHandler.Regions)
@@ -136,7 +136,7 @@ public static class RandomSearch
                         if (!reachable.Contains(location)) Plugin.Logger.LogWarning($"Could not find location {location.GetFullName()}");
                     }
                 }
-                continue; 
+                continue;
             }
 
             // Randomize all the left over locations
@@ -149,7 +149,7 @@ public static class RandomSearch
                 reachable.RemoveAt(chosenReachable);
             }
             break;
-        } 
+        }
 
         return randoMap;
     }
@@ -235,7 +235,7 @@ public static class RandomSearch
             // Checks if it can reach that regions other transitions
             if (log) Plugin.Logger.LogMessage("-> Transitions <-");
             AddReachableTransitions(ref search, foundItems, foundEvents, foundCousins, ref gottenToElevators, transition, updateEvents);
-            
+
             // If not for future, add to closed
             search.AddToClosed(transition);
         }
@@ -262,7 +262,7 @@ public static class RandomSearch
         return newEvents;
     }
 
-    
+
     private static void TryReachItems(ref RandomSearchHolder<ATransition, ALocation> search, ItemEntries foundItems, EventsEntries foundEvents, int foundCousins, ATransition start, Func<ALocation, bool> shouldSkipLocation)
     {
         foreach (ALocation location in start.GetRegion().GetAllLocations())

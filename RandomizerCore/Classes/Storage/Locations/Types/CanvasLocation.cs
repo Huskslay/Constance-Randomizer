@@ -1,14 +1,10 @@
 ﻿using Constance;
-using Leo;
-using Newtonsoft.Json;
-using RandomizerCore.Classes.Adapters;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items;
 using RandomizerCore.Classes.Storage.Items.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace RandomizerCore.Classes.Storage.Locations.Types;

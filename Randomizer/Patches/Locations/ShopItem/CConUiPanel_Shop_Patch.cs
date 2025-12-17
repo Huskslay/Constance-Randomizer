@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AsmResolver.PE.DotNet.ReadyToRun;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
 using RandomizerCore.Classes.Adapters;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
+using System.Collections.Generic;
 using UnityEngine.Localization;
 
 namespace Randomizer.Patches.Locations.ShopItem;
@@ -20,7 +17,7 @@ public class CConUiPanel_Shop_Patch
     {
         if (!RandomState.Randomized) return true;
         if (!RandomState.IsRandomized(RandomizableItems.ShopItems)) return true;
-        
+
         IConPlayerInventory inventory = ConMonoBehaviour.SceneRegistry.Inventory;
         List<ALocation> locations = __instance.GetComponent<ManyLocationComponent>().Locations;
 
@@ -37,7 +34,7 @@ public class CConUiPanel_Shop_Patch
         inventory.Collect(__instance.ShoppingPlayer, itemButton.ShopItem, 1);
         RandomState.TryGetItem(location);
 
-            __instance.ShowSelectionMenu();
+        __instance.ShowSelectionMenu();
         if (__instance.IsShopEmpty()) ConMonoBehaviour.SceneRegistry.UiPanelManager.ClosePanel(__instance);
         return false;
     }
@@ -51,7 +48,7 @@ public class CConUiPanel_Shop_Patch
 
         List<ALocation> locations = __instance.GetComponent<ManyLocationComponent>().Locations;
         ALocation location = locations.Find(x => x.goName == item.name);
-        
+
 
         if (location == null)
         {

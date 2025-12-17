@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
-using Leo;
 using Randomizer.Classes.Random.Generation;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RandomizerMap.Patches;
 
@@ -32,15 +28,18 @@ public class CConUiMapRoot_Patch
             RandomState.Instance.FoundItems, RandomState.Instance.FoundEvents, RandomState.Instance.Cousins.Count, startRegion.transitions[0], (_) => false, out _
         );
 
-        IConUiMapSelectTarget a = __instance.iconParent.GetComponentsInChildren<IConUiMapSelectTarget>(includeInactive: true).First(x => {
+        IConUiMapSelectTarget a = __instance.iconParent.GetComponentsInChildren<IConUiMapSelectTarget>(includeInactive: true).First(x =>
+        {
             if (x.RectTransform.name != "Custom" && x.RectTransform.gameObject.TryGetComponent(out CConUiMapIcon icon))
-            { return icon.icon == ConMapIcon.Shrine; } return false; });
+            { return icon.icon == ConMapIcon.Shrine; }
+            return false;
+        });
         foreach (RandomStateElement element in RandomState.Instance.LocationMap.Values)
         {
             if (!element.isRandomized || element.hasObtainedSource) continue;
             MakeIcon(__instance, a, element.source.GetRegion().id, reachableLocations.Contains(element.source));
         }
-        
+
         //IConUiMapSelectTarget b = __instance.iconParent.GetComponentsInChildren<IConUiMapSelectTarget>(includeInactive: true).First(x => {
         //    if (x.RectTransform.gameObject.TryGetComponent(out CConUiMapIcon icon))
         //    { return icon.icon == ConMapIcon.Elevator; }

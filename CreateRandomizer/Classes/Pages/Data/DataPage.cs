@@ -1,13 +1,7 @@
 ﻿using CheatMenu.Classes;
 using Constance;
-using CreateRandomizer.Classes.Pages.Locations;
-using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
-using RandomizerCore.Classes.Storage;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Skips;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace CreateRandomizer.Classes.Pages.Data;
@@ -44,9 +38,10 @@ public class DataPage : GUIPage
         GUIElements.Line();
 
         bool newOneShot = GUIElements.BoolValue("One Shot", oneShot);
-        if (newOneShot != oneShot) { 
+        if (newOneShot != oneShot)
+        {
             oneShot = newOneShot;
-            ConDebugFlags.DebugOneShot(oneShot); 
+            ConDebugFlags.DebugOneShot(oneShot);
         }
 
         GUI.backgroundColor = bgColor;

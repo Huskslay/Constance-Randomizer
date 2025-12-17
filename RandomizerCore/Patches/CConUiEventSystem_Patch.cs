@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
 
 namespace RandomizerCore.Patches;
@@ -10,7 +7,7 @@ namespace RandomizerCore.Patches;
 public class CConUiEventSystem_Patch
 {
     [HarmonyPrefix]
-    [HarmonyPatch(nameof(CConUiEventSystem.SetInputEnabled))]   
+    [HarmonyPatch(nameof(CConUiEventSystem.SetInputEnabled))]
     private static bool SetInputEnabled_Prefix(CConUiEventSystem __instance)
     {
         return __instance.currentInputModule != null;

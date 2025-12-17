@@ -1,11 +1,10 @@
 ﻿using Constance;
 using HarmonyLib;
-using Leo;
 using Randomizer.Classes.Random;
 using Randomizer.Classes.Random.Generation;
 using Randomizer.Classes.UI.Elements;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using System.Collections;
 using UnityEngine;
 
@@ -39,7 +38,7 @@ public class ConStateAbility_Player_Transition_Patch
         ConStateAbility_Player_Transition transitionAbility = player.SM.TransitionAbility;
         CConCheckPointManager checkPointManager = CConSceneRegistry.Instance.CheckPointManager as CConCheckPointManager;
         CConTransitionManager transitionManager = transitionAbility.TransitionManager;
-        
+
         // Load level and set player to start
         yield return new WaitUntil(() => !transitionManager.IsRunning);
         yield return new WaitForSeconds(0.1f);

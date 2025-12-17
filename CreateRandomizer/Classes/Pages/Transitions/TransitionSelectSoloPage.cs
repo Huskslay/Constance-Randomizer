@@ -38,8 +38,8 @@ public class TransitionSelectSoloPage : SoloGUIPage
         base.UpdateOpen();
         if (Region == null) return;
 
-        Transition transition = GUIElements.ListValue("Transition", null, Region.transitions, 
-            (_, t2, _) => t2 ==  soloPage.ATransition, t => t.name, 1, setColor: NotSelectedColor, afterEachNewLine: (_, _, _) => GUILayout.Space(5));
+        Transition transition = GUIElements.ListValue("Transition", null, Region.transitions,
+            (_, t2, _) => t2 == soloPage.ATransition, t => t.name, 1, setColor: NotSelectedColor, afterEachNewLine: (_, _, _) => GUILayout.Space(5));
         if (transition != null) soloPage.Open(transition);
 
         if (Region.elevator != null)

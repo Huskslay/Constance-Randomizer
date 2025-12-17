@@ -1,6 +1,5 @@
 ﻿using Constance;
 using HarmonyLib;
-using ShrineWarp.Classes;
 
 namespace ShrineWarp.Patches;
 

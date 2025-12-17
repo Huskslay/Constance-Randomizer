@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Events;
 
-namespace RandomizerCore.Classes.Handlers.State;
+namespace RandomizerCore.Classes.State;
 
 public class RandomState(int seed, RandomizableItems includedItems, SkipEntries includedSkips, ItemEntries foundItems, EventsEntries foundEvents, Dictionary<string, RandomStateElement> LocationMap, List<ConLevelId> cousins)
 {
@@ -36,7 +36,8 @@ public class RandomState(int seed, RandomizableItems includedItems, SkipEntries 
 
     public static void TryLoadRandomizerState()
     {
-        if (Randomized) {
+        if (Randomized)
+        {
             Plugin.Logger.LogWarning("Already randomized");
             return;
         }
@@ -49,7 +50,8 @@ public class RandomState(int seed, RandomizableItems includedItems, SkipEntries 
     }
     public static void RandomizeState(int seed, RandomizableItems includedItems, SkipEntries includedSkips)
     {
-        if (Randomized) {
+        if (Randomized)
+        {
             Plugin.Logger.LogWarning("Already randomized");
             return;
         }

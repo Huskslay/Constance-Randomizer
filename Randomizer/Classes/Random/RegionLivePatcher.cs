@@ -1,13 +1,10 @@
 ﻿using Constance;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
-using RandomizerCore.Classes.Storage;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
 using RandomizerCore.Classes.Storage.Regions;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Randomizer.Classes.Random;
@@ -42,9 +39,9 @@ public static class RegionLivePatcher
             TearLocation.PatchLoadedLevel(flashback, region.tearLocation);
             return;
         }
-        
+
         if (!RegionHandler.TryGetRegion(levelId.StringValue, out region))
-        { 
+        {
             Plugin.Logger.LogMessage($"Could not find region for id {levelId.StringValue}");
             return;
         }
@@ -55,7 +52,7 @@ public static class RegionLivePatcher
 
         List<CConCurrencyDepositEntity> deposits =
             [.. UnityEngine.Object.FindObjectsByType<CConCurrencyDepositEntity>(DepositLocationFactory.FindInactive, FindObjectsSortMode.None)];
-        DepositLocationFactory.PatchLoadedLevel(deposits, region.lightStoneLocations, region.currencyFlowerLocations);  
+        DepositLocationFactory.PatchLoadedLevel(deposits, region.lightStoneLocations, region.currencyFlowerLocations);
 
         List<CConChestEntity> chests =
             [.. UnityEngine.Object.FindObjectsByType<CConChestEntity>(ChestLocation.FindInactive, FindObjectsSortMode.None)];

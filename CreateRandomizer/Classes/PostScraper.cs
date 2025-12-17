@@ -40,7 +40,7 @@ public class PostScraper : MonoBehaviour
         }
     }
 
-    private static void Transitions(Region region, List<Tuple<ConCheckPointId, ConCheckPointId>> transitionInfos) 
+    private static void Transitions(Region region, List<Tuple<ConCheckPointId, ConCheckPointId>> transitionInfos)
     {
         // Tp links 1
         foreach (Tuple<ConCheckPointId, ConCheckPointId> transitionInfo in transitionInfos)
@@ -74,7 +74,7 @@ public class PostScraper : MonoBehaviour
             RegionHandler.SaveSaveData(savedData, log: false);
         }
     }
-    
+
     private static RegionSavedData RegionSavedData(Region region)
     {
         string FullName = region.GetFullName();
@@ -110,7 +110,7 @@ public class PostScraper : MonoBehaviour
             {
                 requirementsOwner.requirements.Add(new());
                 requirementsOwner.requirements[^1].transition = transition.GetFullName();
-            } 
+            }
             else if (transition.GetFullName() == FullName && transitionReq != null)
                 requirementsOwner.requirements.Remove(transitionReq);
         }

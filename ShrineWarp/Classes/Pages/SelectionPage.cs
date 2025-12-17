@@ -1,13 +1,8 @@
 ﻿using CheatMenu.Classes;
 using Constance;
 using ShrineWarp.Patches;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace ShrineWarp.Classes.Pages;
 
@@ -23,7 +18,7 @@ public class SelectionPage : GUIPage
 
     public override void Open()
     {
-        
+
     }
 
 

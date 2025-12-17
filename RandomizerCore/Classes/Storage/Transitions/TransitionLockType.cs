@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RandomizerCore.Classes.Storage.Transitions;
+﻿namespace RandomizerCore.Classes.Storage.Transitions;
 
 public enum TransitionLockType
 {

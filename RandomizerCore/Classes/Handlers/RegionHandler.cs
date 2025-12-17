@@ -1,15 +1,12 @@
 ﻿using Constance;
 using FileHandler.Classes;
 using Leo;
-using RandomizerCore.Classes.Storage.Items;
 using RandomizerCore.Classes.Storage.Items.Types;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
-using RandomizerCore.Classes.Storage.Requirements;
 using RandomizerCore.Classes.Storage.Saved;
 using RandomizerCore.Classes.Storage.Transitions;
 using RandomizerCore.Classes.Storage.Transitions.Types;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -134,10 +131,13 @@ public static class RegionHandler
                 names.Add(savedData.GetConnection());
 
                 ISavedDataOwner<T> owner = owners.Find(x => x.GetFullName() == savedData.GetConnection());
-                if (owner == null) {
+                if (owner == null)
+                {
                     Plugin.Logger.LogError($"{savedData.GetConnection()} saved data can not find connection ");
                     continue;
-                } else {
+                }
+                else
+                {
                     owner.SetSavedData(savedData);
                     owners.Remove(owner);
                 }

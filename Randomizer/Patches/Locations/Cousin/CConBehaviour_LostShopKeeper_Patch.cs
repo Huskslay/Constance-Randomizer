@@ -1,10 +1,10 @@
 ﻿using Constance;
 using HarmonyLib;
+using Leo;
 using RandomizerCore.Classes.Adapters;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using System.Collections;
-using Leo;
 
 namespace Randomizer.Patches.Locations.Cousin;
 

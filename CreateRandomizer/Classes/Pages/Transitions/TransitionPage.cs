@@ -35,7 +35,7 @@ public class TransitionPage : GUIPage
             return;
         }
 
-        Region region = GUIElements.ListValue("Regions", null, RegionHandler.Regions, 
+        Region region = GUIElements.ListValue("Regions", null, RegionHandler.Regions,
             (_, t2, _) => t2 != null && t2 == soloPage.Region, t => t == null ? "null" : t.GetFullName(), 4, setColor: NotSelectedColor);
         if (region != null) soloPage.Open(region);
     }

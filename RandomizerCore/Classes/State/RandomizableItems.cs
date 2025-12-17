@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace RandomizerCore.Classes.Handlers.State;
+namespace RandomizerCore.Classes.State;
 
 [Flags]
 public enum RandomizableItems
@@ -12,7 +10,7 @@ public enum RandomizableItems
     CurrencyFlowers = 1 << 1,
     Chests = 1 << 2,
     Canvases = 1 << 3,
-    Inspirations= 1 << 4,
+    Inspirations = 1 << 4,
     ShopItems = 1 << 5,
     DropBehaviours = 1 << 6,
     FoundryPipe = 1 << 7,

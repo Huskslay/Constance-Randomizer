@@ -1,7 +1,7 @@
 ﻿using Constance;
 using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using System;
 using System.Collections.Generic;
@@ -66,7 +66,7 @@ public class ProgressiveItemInstance(string name, List<string> collectables)
         Plugin.Logger.LogMessage($"Giving 1 {collectables[collected]}");
         inventoryManager.Collect(player, CollectableHandler.dict[collectables[collected]], 1);
     }
-    
+
     public string GetItemName()
     {
         int collected = GetIndex();

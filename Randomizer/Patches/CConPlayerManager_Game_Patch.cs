@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
 using Randomizer.Classes.UI.Elements;
-using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 
 namespace Randomizer.Patches;
 

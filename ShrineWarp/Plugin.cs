@@ -1,14 +1,11 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using CheatMenu.Classes;
-using Constance;
 using HarmonyLib;
 using ShrineWarp.Classes;
 using ShrineWarp.Classes.Pages;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ShrineWarp;
 
@@ -55,8 +52,8 @@ public class Plugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 
-    private void InitializeModGUI() 
-    { 
+    private void InitializeModGUI()
+    {
         modGUI = ModGUI.Create(KeyCode.Home, windowRect: new(Screen.currentResolution.width - 300f, 140f, 200f, 600f), windowName: "Shrine Warp");
         modGUI.AddPage<SelectionPage>();
         modGUI.AddPage<OptionsPage>();

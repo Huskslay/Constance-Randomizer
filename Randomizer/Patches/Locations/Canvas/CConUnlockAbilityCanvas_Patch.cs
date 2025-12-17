@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 
 namespace Randomizer.Patches.Locations.Canvas;
 

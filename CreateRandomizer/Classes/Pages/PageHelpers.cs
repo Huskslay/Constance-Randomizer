@@ -1,22 +1,15 @@
-﻿using Constance;
+﻿using CheatMenu.Classes;
+using Constance;
 using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Storage.Locations;
-using RandomizerCore.Classes.Storage;
+using RandomizerCore.Classes.Storage.Requirements.Entries;
+using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
+using RandomizerCore.Classes.Storage.Transitions.Types;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
-using RandomizerCore.Classes.Storage.Transitions;
-using CheatMenu.Classes;
-using RandomizerCore.Classes.Storage.Requirements;
-using RandomizerCore.Classes.Storage.Requirements.Entries;
-using RandomizerCore.Classes.Storage.Transitions.Types;
 using System.Linq;
-using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
-using RandomizerCore.Classes.Storage.Requirements.IRequirements;
-using RandomizerCore.Classes.Storage.Saved;
-using RandomizerCore.Classes.Storage.Regions;
+using UnityEngine;
 
 namespace CreateRandomizer.Classes.Pages;
 
@@ -83,7 +76,7 @@ public static class PageHelpers
 
 
             GUILayout.Space(5);
-            
+
             DrawRequirement(ref transitionRequirement, page);
 
             GUILayout.Space(30);
@@ -153,7 +146,7 @@ public static class PageHelpers
             if (GUILayout.Button("Copy"))
             {
                 copiedEntry = [];
-                foreach (NeededEntry neededEntry in requirement.options) 
+                foreach (NeededEntry neededEntry in requirement.options)
                     copiedEntry.Add(NeededEntry.Constructor(neededEntry.items, neededEntry.skips, neededEntry.difficulty));
             }
             if (GUILayout.Button("Paste"))
@@ -180,7 +173,7 @@ public static class PageHelpers
         GUILayout.BeginHorizontal();
         int index = 0;
         foreach (ItemEntries value in Enum.GetValues(typeof(ItemEntries)))
-        { 
+        {
             if (EntryInfo.SkipItemEntry(value, neededEntry.skips)) continue;
             if (index++ == 7)
             {

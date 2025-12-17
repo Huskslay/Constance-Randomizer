@@ -1,6 +1,5 @@
 ﻿using Constance;
-using Newtonsoft.Json;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Locations.Types;
@@ -40,11 +39,11 @@ public class Region : ISavedDataOwner<RegionSavedData>
     public Region(ConLevelId id,
                   List<CConTeleportPoint> foundTransitions,
                   CConElevatorBehaviour foundElevator,
-                  List<CConCurrencyDepositEntity> foundDeposits, 
-                  List<CConChestEntity> foundChests, 
+                  List<CConCurrencyDepositEntity> foundDeposits,
+                  List<CConChestEntity> foundChests,
                   List<CConUnlockAbilityCanvas> foundCanvases,
-                  List<CConInspirationTriggerBehaviour> foundInspirations, 
-                  List<SConCollectable_ShopItem> foundShopItems, 
+                  List<CConInspirationTriggerBehaviour> foundInspirations,
+                  List<SConCollectable_ShopItem> foundShopItems,
                   List<CConEntityDropBehaviour_TouchToCollect> foundDropBehaviours,
                   List<ConFoundryPaintPipe_Valve> foundFoundryPipes,
                   CConBehaviour_LostShopKeeper foundCousin)
@@ -117,7 +116,7 @@ public class Region : ISavedDataOwner<RegionSavedData>
         {
             foreach (ALocation location in toAdd)
             {
-                if (!onlyUsed || location.GetSavedData() != null && location.GetSavedData().used) 
+                if (!onlyUsed || location.GetSavedData() != null && location.GetSavedData().used)
                     locations.Add(location);
             }
         }

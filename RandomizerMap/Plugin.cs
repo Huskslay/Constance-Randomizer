@@ -2,11 +2,8 @@
 using BepInEx.Logging;
 using Constance;
 using HarmonyLib;
-using RandomizerCore.Classes.Handlers.State;
 using RandomizerCore.Classes.Handlers;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
+using RandomizerCore.Classes.State;
 
 namespace RandomizerMap;
 
@@ -16,7 +13,7 @@ namespace RandomizerMap;
 public class Plugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger;
-        
+
     private void Awake()
     {
         Logger = base.Logger;

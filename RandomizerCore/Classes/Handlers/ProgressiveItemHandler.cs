@@ -1,11 +1,8 @@
 ﻿using Constance;
 using FileHandler.Classes;
-using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Items.Types.Progressive;
-using Sonity;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RandomizerCore.Classes.Handlers;
 
@@ -13,7 +10,7 @@ public static class ProgressiveItemHandler
 {
     public static readonly string folderName = "Progressive Item Instances";
 
-    public static List<ProgressiveItemInstance> Instances { get; private set; }  = [];
+    public static List<ProgressiveItemInstance> Instances { get; private set; } = [];
 
 
     public static void Init()

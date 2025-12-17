@@ -1,14 +1,11 @@
 ﻿using Constance;
-using Newtonsoft.Json;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items;
 using RandomizerCore.Classes.Storage.Items.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
 
 namespace RandomizerCore.Classes.Storage.Locations.Types;
 
@@ -44,8 +41,9 @@ public class InspirationLocation : ALocation
     public static void PatchLoadedLevel(List<CConInspirationTriggerBehaviour> inspirations, List<InspirationLocation> inspirationLocations)
     {
         if (!RandomState.IsRandomized(RandomizableItems.Inspirations)) return;
-        BasicPatch(inspirations, inspirationLocations.ConvertAll(x => (ALocation)x), 
-            (inspiration, location) => {
+        BasicPatch(inspirations, inspirationLocations.ConvertAll(x => (ALocation)x),
+            (inspiration, location) =>
+            {
                 inspiration.inspiration = null;
 
                 // Hide the inspiration if it has been collected already
@@ -67,5 +65,5 @@ public class InspirationLocation : ALocation
                 }
             }
         );
-    }   
+    }
 }

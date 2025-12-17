@@ -1,10 +1,8 @@
 ﻿using Constance;
 using Randomizer.Classes.UI.Menus;
 using Randomizer.Patches.Menu;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
-using System;
-using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace Randomizer.Classes.UI.Elements;
 

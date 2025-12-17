@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
-using RandomizerCore.Classes.Adapters;
-using RandomizerCore.Classes.Handlers.State;
-using RandomizerCore.Classes.Storage.Locations;
-using UnityEngine;
-using Sonity;
-using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
+using RandomizerCore.Classes.State;
 
 namespace Randomizer.Patches.Locations.Cousin;
 
@@ -23,7 +15,7 @@ public class SConConfig_QuestFindShopKeepers_Patch
         if (!RandomState.IsRandomized(RandomizableItems.Cousins)) return true;
 
         __result = RandomState.Instance.Cousins.Contains(levelId);
-        
+
         return true;
     }
 }

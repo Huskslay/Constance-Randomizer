@@ -1,11 +1,9 @@
 ﻿using Constance;
-using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace RandomizerCore.Classes.Handlers.State;
+namespace RandomizerCore.Classes.State;
 
 [Serializable]
 public class SerializeState(int seed, RandomizableItems includedItems, SkipEntries includedSkips, ItemEntries foundItems, EventsEntries foundEvents, List<bool> states, List<ConLevelId> cousins)

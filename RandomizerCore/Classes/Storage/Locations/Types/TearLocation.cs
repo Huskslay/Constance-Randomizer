@@ -1,13 +1,11 @@
 ﻿using Constance;
 using RandomizerCore.Classes.Adapters;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items;
 using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Regions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RandomizerCore.Classes.Storage.Locations.Types;
 

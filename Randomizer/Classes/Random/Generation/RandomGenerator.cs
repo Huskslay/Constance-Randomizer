@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.State;
-using RandomizerCore.Classes.Storage;
+﻿using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
+using System;
+using System.Collections.Generic;
 
 namespace Randomizer.Classes.Random.Generation;
 

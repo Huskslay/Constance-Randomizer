@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Xml.Linq;
-using Constance;
+﻿using Constance;
 using HarmonyLib;
-using Leo;
 using RandomizerCore.Classes.Handlers;
-using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace RandomizerCore.Patches.AllowDashlessWallDive;
 

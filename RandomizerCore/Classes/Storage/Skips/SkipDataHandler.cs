@@ -2,13 +2,12 @@
 using RandomizerCore.Classes.Storage.Requirements.Entries;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RandomizerCore.Classes.Storage.Skips;
 public static class SkipDataHandler
 {
     private static readonly string folder = "Skip Data";
-        
+
     public static List<SkipData> skipDatas;
 
     public static void Init()

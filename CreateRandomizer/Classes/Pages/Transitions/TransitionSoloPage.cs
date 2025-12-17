@@ -50,14 +50,15 @@ public class TransitionSoloPage : SoloGUIPage
             GUIElements.Line();
 
             savedData.autoUnlock = GUIElements.BoolValue("Auto Unlock", savedData.autoUnlock);
-        } 
+        }
         else if (ATransition.TransitionMethod == TransitionMethod.Touch || ATransition.TransitionMethod == TransitionMethod.Prompt)
         {
             Transition transitionTransition = (Transition)ATransition;
 
             GUILayout.Space(10);
             savedData.doOverrideTransition = GUIElements.BoolValue("Override transition", savedData.doOverrideTransition);
-            if (savedData.doOverrideTransition) {
+            if (savedData.doOverrideTransition)
+            {
                 GUILayout.BeginHorizontal();
                 savedData.overrideTransition = GUIElements.StringValue("Override", savedData.overrideTransition);
                 if (GUILayout.Button("To Nearest"))
@@ -81,10 +82,13 @@ public class TransitionSoloPage : SoloGUIPage
                 GUILayout.EndHorizontal();
             }
 
-            if (transitionTransition.GetLinkedTransition() != null) { 
+            if (transitionTransition.GetLinkedTransition() != null)
+            {
                 if (GUILayout.Button((savedData.doOverrideTransition ? "Jank " : "") + "Teleport")) StartCoroutine(PageHelpers.LoadTransition(transitionTransition));
                 if (GUILayout.Button("Teleport other side")) StartCoroutine(PageHelpers.LoadTransition(transitionTransition.GetLinkedTransition()));
-            } else {
+            }
+            else
+            {
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Transition Link is null");
                 if (GUILayout.Button("Load Region")) StartCoroutine(RegionHandler.LoadLevel(ATransition.GetRegion()));
@@ -92,7 +96,7 @@ public class TransitionSoloPage : SoloGUIPage
             }
 
             GUIElements.Line();
-            
+
             savedData.lockType = GUIElements.EnumValue("Lock type", savedData.lockType);
         }
 

@@ -1,8 +1,6 @@
 ﻿using Constance;
 using FileHandler.Classes;
-using RandomizerCore;
 using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Storage;
 using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
@@ -10,9 +8,6 @@ using RandomizerCore.Classes.Storage.Regions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Transactions;
 using UnityEngine;
 
 namespace CreateRandomizer.Classes;
@@ -38,7 +33,7 @@ public class Scraper : MonoBehaviour
             I = new GameObject().AddComponent<Scraper>();
             I.transform.SetParent(Plugin.Transform);
         }
-        
+
         CollectableHandler.TrueInit();
         progressiveItem = new("Tears", [
             CollectableHandler.goalsList[0].name,

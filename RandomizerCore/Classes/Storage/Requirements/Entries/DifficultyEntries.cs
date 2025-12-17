@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RandomizerCore.Classes.Storage.Requirements.Entries;
+﻿namespace RandomizerCore.Classes.Storage.Requirements.Entries;
 
 public enum DifficultyEntries
 {

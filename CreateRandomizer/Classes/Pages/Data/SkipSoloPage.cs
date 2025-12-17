@@ -1,13 +1,7 @@
 ﻿using CheatMenu.Classes;
-using FileHandler.Classes;
-using JetBrains.Annotations;
-using RandomizerCore.Classes.Storage.Locations;
-using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
 using RandomizerCore.Classes.Storage.Skips;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace CreateRandomizer.Classes.Pages.Data;
