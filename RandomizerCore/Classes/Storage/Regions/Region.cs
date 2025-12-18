@@ -1,9 +1,9 @@
 ﻿using Constance;
 using RandomizerCore.Classes.State;
-using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
+using RandomizerCore.Classes.Storage.Locations.Types.Progressive.Types;
 using RandomizerCore.Classes.Storage.Saved;
 using RandomizerCore.Classes.Storage.Transitions.Types;
 using System;
@@ -65,9 +65,9 @@ public class Region : ISavedDataOwner<RegionSavedData>
         if (foundCousin != null) cousinLocation = new(foundCousin, this);
     }
 
-    public void SetTearLocation(ProgressiveItemInstance progressiveItemInstance, SConCollectable tear)
+    public void SetTearLocation(SConCollectable tear)
     {
-        tearLocation = new(progressiveItemInstance, tear, this);
+        tearLocation = new(tear, this);
     }
 
     public void Init()

@@ -72,11 +72,11 @@ public class RandomState(int seed, RandomizableItems includedItems, SkipEntries 
         if (!Randomized) return false;
         return Instance.LocationMap.TryGetValue(location.GetFullName(), out element);
     }
-    public static bool TryGetElementFromDestName(string location, out RandomStateElement element)
+    public static bool TryGetElementFromDest(ALocation dest, out RandomStateElement element)
     {
         element = null;
         if (!Randomized) return false;
-        element = Instance.LocationMap.Values.ToList().Find(x => x.dest.GetFullName() == location);
+        element = Instance.LocationMap.Values.ToList().Find(x => x.dest == dest);
         return element != null;
     }
     public static void TryGetItem(ALocation source)
@@ -97,8 +97,8 @@ public class RandomState(int seed, RandomizableItems includedItems, SkipEntries 
         }
 
         element.dest.GiveItems();
-        element.hasObtainedSource = true;
         onLocationGet?.Invoke(element);
+        element.hasObtainedSource = true;
     }
 
     private static void FindItem(RandomStateElement element)

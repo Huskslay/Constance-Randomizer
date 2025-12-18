@@ -1,21 +1,20 @@
-﻿using Constance;
-using FileHandler.Classes;
-using RandomizerCore.Classes.Storage.Items.Types.Progressive;
-using System;
+﻿using FileHandler.Classes;
+using RandomizerCore.Classes.Storage.Items;
+using RandomizerCore.Classes.Storage.Locations.Types.Progressive;
 using System.Collections.Generic;
 
 namespace RandomizerCore.Classes.Handlers;
 
 public static class ProgressiveItemHandler
 {
-    public static readonly string folderName = "Progressive Item Instances";
+    public static List<string> FolderName => ["Progressive Item Instances"];
 
     public static List<ProgressiveItemInstance> Instances { get; private set; } = [];
 
 
     public static void Init()
     {
-        Instances = FileSaveLoader.LoadClasses<ProgressiveItemInstance>([folderName]);
+        Instances = FileSaveLoader.LoadClassesJson<ProgressiveItemInstance>(FolderName);
 
         HashSet<string> names = [];
         foreach (ProgressiveItemInstance instance in Instances)
@@ -23,32 +22,53 @@ public static class ProgressiveItemHandler
             if (instance == null) Plugin.Logger.LogError("Null progressive item instance found");
             else
             {
-                if (!instance.AllLoaded(out Tuple<int, int> counts)) Plugin.Logger.LogError($"{instance.name} does not have matching insides - {counts.Item2} / {counts.Item1}");
-
-                if (names.Contains(instance.name))
-                    Plugin.Logger.LogError($"Progressive item instance name '{instance.name}' is not unique");
-                names.Add(instance.name);
+                instance.Init();
+                if (names.Contains(instance.GetType().ToString()))
+                    Plugin.Logger.LogError($"Progressive item instance name '{instance.GetType()}' is not unique");
+                names.Add(instance.GetType().ToString());
             }
         }
         Plugin.Logger.LogMessage($"{Instances.Count} progressive item instances found");
-        FileSaveLoader.TrySaveClassToJson(names, ["Names"], folderName, logSuccess: false);
+        FileSaveLoader.TrySaveClassToJson(names, ["Names"], FolderName[0], logSuccess: false);
+    }
+    public static void Save(ProgressiveItemInstance instance, bool log)
+    {
+        FileSaveLoader.TrySaveClassToJson(instance, FolderName, instance.GetProgressiveType().ToString(), logSuccess: log);
     }
 
-
-    public static void AddInstance(ProgressiveItemInstance instance)
+    private static bool TryGetInstance(ProgressiveItemType type, out ProgressiveItemInstance instance)
     {
-        Instances.Add(instance);
+        instance = Instances.Find(x => x.GetProgressiveType() == type);
+        if (instance == null)
+        {
+            Plugin.Logger.LogWarning($"Progressive Item Instance for type '{type}' does not exist, creating new");
+            return false;
+        }
+        return true;
     }
 
-    public static void Claim(string instanceName, IConPlayerEntity player, IConPlayerInventory inventoryManager)
+    public static string GetItemName(IProgressiveLocation location)
     {
-        ProgressiveItemInstance instance = Instances.Find(x => x.name == instanceName);
-        instance.Claim(player, inventoryManager);
+        if (TryGetInstance(location.GetProgressiveType(), out ProgressiveItemInstance instance)) return instance.GetItemName();
+        return null;
     }
 
-    public static string GetItemName(string instanceName)
+    public static void AddToInstance(IProgressiveLocation location)
     {
-        ProgressiveItemInstance instance = Instances.Find(x => x.name == instanceName);
-        return instance.GetItemName();
+        ProgressiveItemType type = location.GetProgressiveType();
+        if (!TryGetInstance(type, out ProgressiveItemInstance instance))
+        {
+            Plugin.Logger.LogWarning("Creating new");
+            instance = new(type);
+            Instances.Add(instance);
+        }
+        instance.AddItem(location);
+        Save(instance, log: true);
+    }
+
+    internal static AItem GetItem(IProgressiveLocation location)
+    {
+        if (!TryGetInstance(location.GetProgressiveType(), out ProgressiveItemInstance instance)) return null;
+        return instance.GetItem();
     }
 }

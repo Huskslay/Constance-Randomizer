@@ -18,8 +18,9 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
 
         SkipDataHandler.Init();
-        RegionsHandler.InitAll();
         CollectableHandler.Init();
+
+        RegionsHandler.InitAll();
         ProgressiveItemHandler.Init();
 
         Harmony patcher = new("HarmonyPatcher");

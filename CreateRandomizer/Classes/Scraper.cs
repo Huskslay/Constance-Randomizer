@@ -2,7 +2,6 @@
 using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
-using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
 using RandomizerCore.Classes.Storage.Regions;
@@ -24,9 +23,6 @@ public class Scraper : MonoBehaviour
     private static List<string> hasShrines;
 
 
-    private static ProgressiveItemInstance progressiveItem;
-
-
     public static void Scrape()
     {
         if (I == null)
@@ -36,13 +32,6 @@ public class Scraper : MonoBehaviour
         }
 
         CollectableHandler.TrueInit();
-        progressiveItem = new("Tears", [
-            CollectableHandler.goalsList[0].name,
-            CollectableHandler.goalsList[1].name,
-            CollectableHandler.goalsList[2].name,
-            CollectableHandler.goalsList[3].name,
-        ]);
-        ProgressiveItemHandler.AddInstance(progressiveItem);
 
         if (Running)
         {
@@ -82,7 +71,6 @@ public class Scraper : MonoBehaviour
             yield return ScrapeFlashback(player, scene);
             if (!Running) break;
         }
-        if (!progressiveItem.AllLoaded(out _)) Plugin.Logger.LogError($"Did not load all progressive items for instance {progressiveItem.name}");
 
         RegionsHandler.InitAll();
 
@@ -167,7 +155,7 @@ public class Scraper : MonoBehaviour
             yield break;
         }
 
-        exitRegion.SetTearLocation(progressiveItem, level.tearUnlock);
+        exitRegion.SetTearLocation(level.tearUnlock);
         RegionsHandler.I.Save(exitRegion, log: false);
     }
 }

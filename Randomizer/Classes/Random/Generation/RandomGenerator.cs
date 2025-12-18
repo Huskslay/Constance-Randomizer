@@ -1,5 +1,4 @@
-﻿using RandomizerCore.Classes.Handlers;
-using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
+﻿using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;

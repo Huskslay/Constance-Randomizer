@@ -1,11 +1,10 @@
 ﻿using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
-using RandomizerCore.Classes.Storage.Saved;
 using System;
 
 namespace RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 
-public class LocationsHandler : SaveDataOwnerHandler<ISavedDataOwner<LocationSavedData>, LocationSavedData>
+public class LocationsHandler : SaveDataOwnerHandler<ALocation, LocationSavedData>
 {
     public static LocationsHandler I { get; private set; }
     public override void Init()
@@ -17,7 +16,7 @@ public class LocationsHandler : SaveDataOwnerHandler<ISavedDataOwner<LocationSav
     protected override string GetName() => "Locations";
 
 
-    protected override void LoadDatas(Action<ISavedDataOwner<LocationSavedData>> initiate)
+    protected override void LoadDatas(Action<ALocation> initiate)
     {
         foreach (Region region in RegionsHandler.I.GetAll())
         {

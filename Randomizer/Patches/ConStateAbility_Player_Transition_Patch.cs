@@ -3,7 +3,6 @@ using HarmonyLib;
 using Randomizer.Classes.Random;
 using Randomizer.Classes.Random.Generation;
 using Randomizer.Classes.UI.Elements;
-using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using System.Collections;

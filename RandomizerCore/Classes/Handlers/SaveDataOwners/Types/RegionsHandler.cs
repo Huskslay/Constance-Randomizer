@@ -127,7 +127,12 @@ public class RegionsHandler : SaveDataOwnerHandler<Region, RegionSavedData>
 
         transitionAbility.StartTransitionIn(trans);
         float start = Time.time;
-        yield return new WaitUntil(() => !transitionManager.IsRunning || Time.time - start > 10);
-        if (transitionManager.IsRunning) transitionManager.AbortTransition();
+        yield return new WaitUntil(() => !transitionManager.IsRunning || Time.time - start > 15);
+        if (transitionManager.IsRunning)
+        {
+            Plugin.Logger.LogError($"Transition did not end fast enough, forcably ending");
+            transitionManager.AbortTransition();
+        }
+        yield return new WaitForSeconds(0.1f);
     }
 }

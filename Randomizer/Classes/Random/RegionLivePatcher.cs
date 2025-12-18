@@ -1,9 +1,9 @@
 ﻿using Constance;
-using RandomizerCore.Classes.Handlers;
 using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
+using RandomizerCore.Classes.Storage.Locations.Types.Progressive.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using System.Collections.Generic;
 using UnityEngine;
