@@ -1,5 +1,6 @@
 ﻿using Constance;
 using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
@@ -27,7 +28,7 @@ public static class RandomSearch
 
     public static Dictionary<string, RandomStateElement> Generate(ref System.Random rand, Dictionary<string, RandomStateElement> randoMap, List<ALocation> toRandomize, SkipEntries allowedSkips)
     {
-        if (!RegionHandler.TryGetTransitionFromDestinationCheckpoint(searchCheckpointId, out Transition start))
+        if (!RegionsHandler.I.TryGetTransitionFromDestinationCheckpoint(searchCheckpointId, out Transition start))
         {
             Plugin.Logger.LogError($"Could not find start transition '{start}' for generation");
             return null;
@@ -59,7 +60,7 @@ public static class RandomSearch
                 }
             }
             // Check off region events existing
-            foreach (Region region in RegionHandler.Regions)
+            foreach (Region region in RegionsHandler.I.GetAll())
             {
                 foreach (EventRequirement requirement in region.GetSavedData().obtainableEvents.requirements)
                     foundEvents |= requirement.evnt;
@@ -128,7 +129,7 @@ public static class RandomSearch
             {
 
                 Plugin.Logger.LogError($"Some locations cannot not reached after all importants put in {reachable.Count} / {toRando.Count}");
-                foreach (Region region in RegionHandler.Regions)
+                foreach (Region region in RegionsHandler.I.GetAll())
                 {
                     foreach (ALocation location in region.GetAllLocations())
                     {
@@ -191,7 +192,7 @@ public static class RandomSearch
     }
     private static void ValidateFoundTransitions()
     {
-        foreach (Region region in RegionHandler.Regions)
+        foreach (Region region in RegionsHandler.I.GetAll())
         {
             foreach (Transition trans in region.transitions)
             {
@@ -330,7 +331,7 @@ public static class RandomSearch
         // Gets linked portals for an elevator transition
 
         ElevatorTransition transition = aTransition as ElevatorTransition;
-        List<ATransition> links = RegionHandler.GetElevatorTransitions().FindAll(x => x.GetSavedData().autoUnlock).ConvertAll(x => (ATransition)x);
+        List<ATransition> links = RegionsHandler.I.GetElevatorTransitions().FindAll(x => x.GetSavedData().autoUnlock).ConvertAll(x => (ATransition)x);
         return links;
     }
 

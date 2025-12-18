@@ -1,5 +1,6 @@
 ﻿using Constance;
 using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
@@ -30,7 +31,7 @@ public static class RegionLivePatcher
                 Plugin.Logger.LogMessage($"Could not find region from flashback at {levelId.StringValue}");
                 return;
             }
-            if (!RegionHandler.TryGetRegion(exitRegion.StringValue, out region))
+            if (!RegionsHandler.I.TryGetFromId(exitRegion.StringValue, out region))
             {
                 Plugin.Logger.LogMessage($"Could not find region from flashback exit at {exitRegion.StringValue}");
                 return;
@@ -40,7 +41,7 @@ public static class RegionLivePatcher
             return;
         }
 
-        if (!RegionHandler.TryGetRegion(levelId.StringValue, out region))
+        if (!RegionsHandler.I.TryGetFromId(levelId.StringValue, out region))
         {
             Plugin.Logger.LogMessage($"Could not find region for id {levelId.StringValue}");
             return;

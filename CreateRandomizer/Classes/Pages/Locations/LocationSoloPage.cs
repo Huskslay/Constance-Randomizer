@@ -1,5 +1,5 @@
 ﻿using CheatMenu.Classes;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
@@ -114,7 +114,7 @@ public class LocationSoloPage : SoloGUIPage
 
         if (getMonos != null) if (GUILayout.Button("Teleport")) StartCoroutine(PageHelpers.LoadLocation(Location, getMonos));
 
-        RegionHandler.SaveSaveData(Location.GetSavedData(), log: false);
+        LocationsHandler.I.SaveSaveData(Location.GetSavedData(), log: false);
     }
 
     public override void Close()

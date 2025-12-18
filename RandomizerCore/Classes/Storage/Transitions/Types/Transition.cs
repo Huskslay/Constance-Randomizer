@@ -1,7 +1,7 @@
 ﻿using Constance;
 using FileHandler.Classes;
 using Leo;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using System;
 
@@ -24,7 +24,7 @@ public class Transition(CConTeleportPoint teleportPoint, Region region) : ATrans
     public Transition GetLinkedTransition()
     {
         string output = GetSavedData().doOverrideTransition ? GetSavedData().overrideTransition : linkedTransition;
-        if (!RegionHandler.TryGetTransitionFromName(output, out Transition linked)) return null;
+        if (!RegionsHandler.I.TryGetTransitionFromName(output, out Transition linked)) return null;
         return linked;
     }
 

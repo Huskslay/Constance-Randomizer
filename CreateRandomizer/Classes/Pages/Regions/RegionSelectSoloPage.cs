@@ -1,5 +1,5 @@
 ﻿using CheatMenu.Classes;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
 using RandomizerCore.Classes.Storage.Transitions.Types;
@@ -15,8 +15,6 @@ public class RegionSelectSoloPage : SoloGUIPage
     private RegionSavedData savedData;
 
     private RegionSoloPage soloPage;
-
-    private int selectedTransition;
 
     public override void Init(ModGUI modGUI, Transform parent, int id = 1)
     {
@@ -35,7 +33,6 @@ public class RegionSelectSoloPage : SoloGUIPage
     public override void Open()
     {
         if (Region == null) return;
-        selectedTransition = -1;
         base.Open();
     }
 
@@ -77,7 +74,7 @@ public class RegionSelectSoloPage : SoloGUIPage
             savedData.obtainableEvents.requirements.Add(newReq);
         }
 
-        RegionHandler.SaveSaveData(savedData, log: false);
+        RegionsHandler.I.SaveSaveData(savedData, log: false);
     }
 
 

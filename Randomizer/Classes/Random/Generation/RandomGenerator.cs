@@ -1,4 +1,5 @@
 ﻿using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
@@ -18,7 +19,7 @@ public class RandomGenerator : IStateGenerator
 
         List<ALocation> toRando = [];
         List<ALocation> nonRando = [];
-        foreach (Region region in RegionHandler.Regions)
+        foreach (Region region in RegionsHandler.I.GetAll())
         {
             if (region == null)
             {

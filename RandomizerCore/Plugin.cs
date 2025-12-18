@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Skips;
 
 namespace RandomizerCore;
@@ -17,7 +18,7 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
 
         SkipDataHandler.Init();
-        RegionHandler.Init();
+        RegionsHandler.InitAll();
         CollectableHandler.Init();
         ProgressiveItemHandler.Init();
 

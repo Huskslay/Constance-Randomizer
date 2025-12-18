@@ -1,9 +1,4 @@
 ﻿using RandomizerCore.Classes.State;
-using RandomizerCore.Classes.Storage.Locations;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 

@@ -1,6 +1,7 @@
 ﻿using Constance;
 using FileHandler.Classes;
 using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Items.Types.Progressive;
 using RandomizerCore.Classes.Storage.Locations.Types;
 using RandomizerCore.Classes.Storage.Locations.Types.Deposits;
@@ -71,7 +72,7 @@ public class Scraper : MonoBehaviour
         FileSaveLoader.TrySaveClassToJson(hasShrines, ["Names"], "Shrine Maps");
 
 
-        RegionHandler.Init();
+        RegionsHandler.InitAll();
 
 
         Plugin.Logger.LogMessage($"~~~~~~~~~~~~~\nFlashback Editing");
@@ -83,18 +84,18 @@ public class Scraper : MonoBehaviour
         }
         if (!progressiveItem.AllLoaded(out _)) Plugin.Logger.LogError($"Did not load all progressive items for instance {progressiveItem.name}");
 
-        RegionHandler.Init();
+        RegionsHandler.InitAll();
 
 
         Plugin.Logger.LogMessage($"~~~~~~~~~~~~~\nPost Editing");
-        foreach (Region region in RegionHandler.Regions)
+        foreach (Region region in RegionsHandler.I.GetAll())
         {
             PostScraper.Run(region, transitionInfos[region.GetFullName()]);
-            RegionHandler.SaveRegion(region, log: false);
+            RegionsHandler.I.Save(region, log: false);
         }
 
 
-        RegionHandler.Init();
+        RegionsHandler.InitAll();
 
 
         Running = false;
@@ -105,7 +106,7 @@ public class Scraper : MonoBehaviour
         Plugin.Logger.LogMessage($"~~~~~~~~~~~~~\nLoading {scene}");
 
         ConLevelId levelId = new(scene);
-        yield return RegionHandler.LoadLevel(levelId, player);
+        yield return RegionsHandler.I.LoadLevel(levelId, player);
 
 
         List<CConTeleportPoint> transitions =
@@ -133,7 +134,7 @@ public class Scraper : MonoBehaviour
         Plugin.Logger.LogMessage($"Found: {deposits.Count} Deposits, {chests.Count} Chests, {canvases.Count} Canvases, {inspirations.Count} Inspirations, {shopItems.Count} Shop Items, {dropBehaviours.Count} Drop Behaviours, {foundryPipes.Count} Foundry Pipes, {isACousin} Cousin");
 
         Region region = new(levelId, transitions, elevator, deposits, chests, canvases, inspirations, shopItems, dropBehaviours, foundryPipes, cousin);
-        RegionHandler.SaveRegion(region, log: false);
+        RegionsHandler.I.Save(region, log: false);
 
 
         CConLevel_Adventure level = FindFirstObjectByType<CConLevel_Adventure>();
@@ -152,7 +153,7 @@ public class Scraper : MonoBehaviour
         Plugin.Logger.LogMessage($"~~~~~~~~~~~~~\nLoading {scene}");
 
         ConLevelId levelId = new(scene);
-        yield return RegionHandler.LoadLevel(levelId, player);
+        yield return RegionsHandler.I.LoadLevel(levelId, player);
 
         CConLevel_Flashback level = FindFirstObjectByType<CConLevel_Flashback>();
         if (!level.exitToCheckPoint.TryExtractLevelId(out ConLevelId exit))
@@ -160,13 +161,13 @@ public class Scraper : MonoBehaviour
             Plugin.Logger.LogError("Could not get exit id");
             yield break;
         }
-        if (!RegionHandler.TryGetRegion(exit.StringValue, out Region exitRegion))
+        if (!RegionsHandler.I.TryGetFromId(exit.StringValue, out Region exitRegion))
         {
             Plugin.Logger.LogError("Could not get exit region");
             yield break;
         }
 
         exitRegion.SetTearLocation(progressiveItem, level.tearUnlock);
-        RegionHandler.SaveRegion(exitRegion, log: false);
+        RegionsHandler.I.Save(exitRegion, log: false);
     }
 }

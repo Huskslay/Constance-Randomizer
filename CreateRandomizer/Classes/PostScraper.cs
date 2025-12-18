@@ -1,5 +1,5 @@
 ﻿using Constance;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Requirements;
@@ -26,7 +26,7 @@ public class PostScraper : MonoBehaviour
         // Saved Data
         RegionSavedData savedData = RegionSavedData(region);
         region.SetSavedData(savedData);
-        RegionHandler.SaveSaveData(savedData, log: false);
+        RegionsHandler.I.SaveSaveData(savedData, log: false);
     }
 
     private static void Locations(Region region)
@@ -36,7 +36,7 @@ public class PostScraper : MonoBehaviour
             // Saved Data
             LocationSavedData savedData = LocationSavedData(region, location);
             location.SetSavedData(savedData);
-            RegionHandler.SaveSaveData(savedData, log: false);
+            LocationsHandler.I.SaveSaveData(savedData, log: false);
         }
     }
 
@@ -45,12 +45,12 @@ public class PostScraper : MonoBehaviour
         // Tp links 1
         foreach (Tuple<ConCheckPointId, ConCheckPointId> transitionInfo in transitionInfos)
         {
-            if (!RegionHandler.TryGetTransitionFromDestinationCheckpoint(transitionInfo.Item1, out Transition one))
+            if (!RegionsHandler.I.TryGetTransitionFromDestinationCheckpoint(transitionInfo.Item1, out Transition one))
             {
                 Plugin.Logger.LogWarning($"Could not find transition for checkpoint id: {transitionInfo.Item1.StringValue}");
                 continue;
             }
-            if (!RegionHandler.TryGetTransitionFromDestinationCheckpoint(transitionInfo.Item2, out Transition two))
+            if (!RegionsHandler.I.TryGetTransitionFromDestinationCheckpoint(transitionInfo.Item2, out Transition two))
             {
                 Plugin.Logger.LogWarning($"Could not find transition for checkpoint id: {transitionInfo.Item1.StringValue}");
                 continue;
@@ -64,28 +64,28 @@ public class PostScraper : MonoBehaviour
         {
             TransitionSavedData savedData = TransitionSavedData(region, transition);
             transition.SetSavedData(savedData);
-            RegionHandler.SaveSaveData(savedData, log: false);
+            TransitionsHandler.I.SaveSaveData(savedData, log: false);
         }
         // Elevator requirements
         if (region.elevator != null)
         {
             TransitionSavedData savedData = TransitionSavedData(region, region.elevator, true);
             region.elevator.SetSavedData(savedData);
-            RegionHandler.SaveSaveData(savedData, log: false);
+            TransitionsHandler.I.SaveSaveData(savedData, log: false);
         }
     }
 
     private static RegionSavedData RegionSavedData(Region region)
     {
         string FullName = region.GetFullName();
-        RegionSavedData savedData = RegionHandler.RegionSavedData.Find(x => x.GetConnection() == FullName);
+        RegionSavedData savedData = RegionsHandler.I.GetSaveData(FullName);
         savedData ??= new(region.GetFullName());
         return savedData;
     }
     private static TransitionSavedData TransitionSavedData(Region region, ATransition transition, bool isElevator = false)
     {
         string FullName = transition.GetFullName();
-        TransitionSavedData savedData = RegionHandler.TransitionSavedData.Find(x => x.GetConnection() == FullName);
+        TransitionSavedData savedData = TransitionsHandler.I.GetSaveData(FullName);
         savedData ??= new(transition.GetFullName());
         savedData.neededRequirements = CreateTransitionRequirements(savedData.neededRequirements, region, FullName, isElevator);
         return savedData;
@@ -93,7 +93,7 @@ public class PostScraper : MonoBehaviour
     private static LocationSavedData LocationSavedData(Region region, ALocation location)
     {
         string FullName = location.GetFullName();
-        LocationSavedData savedData = RegionHandler.LocationSavedData.Find(x => x.GetConnection() == FullName);
+        LocationSavedData savedData = LocationsHandler.I.GetSaveData(FullName);
         savedData ??= new(location.GetFullName());
         savedData.neededRequirements = CreateTransitionRequirements(savedData.neededRequirements, region, FullName);
         return savedData;

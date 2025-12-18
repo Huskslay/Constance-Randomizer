@@ -1,4 +1,4 @@
-﻿using RandomizerCore.Classes.Handlers;
+﻿using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Regions;
 using RandomizerCore.Classes.Storage.Saved;
 using System;
@@ -15,9 +15,11 @@ public abstract class ATransition(string regionName, TransitionMethod method) : 
     public virtual string GetFullName() => null;
     public Region GetRegion()
     {
-        if (!RegionHandler.TryGetRegionFromName(regionName, out Region region)) return null;
+        if (!RegionsHandler.I.TryGetFromName(regionName, out Region region)) return null;
         return region;
     }
+
+    public void Init() { }
 
     private TransitionSavedData savedData = null;
     public TransitionSavedData GetSavedData() => savedData;

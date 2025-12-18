@@ -1,7 +1,7 @@
 ﻿using Constance;
 using Newtonsoft.Json;
 using RandomizerCore.Classes.Adapters;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Items;
 using RandomizerCore.Classes.Storage.Regions;
@@ -26,7 +26,7 @@ public abstract class ALocation : ISavedDataOwner<LocationSavedData>
 
     public Region GetRegion()
     {
-        if (!RegionHandler.TryGetRegionFromName(regionName, out Region region)) return null;
+        if (!RegionsHandler.I.TryGetFromName(regionName, out Region region)) return null;
         return region;
     }
 

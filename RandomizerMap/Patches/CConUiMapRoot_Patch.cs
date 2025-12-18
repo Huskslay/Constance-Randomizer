@@ -1,7 +1,7 @@
 ﻿using Constance;
 using HarmonyLib;
 using Randomizer.Classes.Random.Generation;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
@@ -20,10 +20,14 @@ public class CConUiMapRoot_Patch
     [HarmonyPatch(nameof(CConUiMapRoot.RebuildSelectTargets))]
     private static void RebuildSelectTargets_Prefix(CConUiMapRoot __instance)
     {
-        foreach (CConUiMapIcon icon in icons) UnityEngine.Object.Destroy(icon.gameObject);
+        foreach (CConUiMapIcon icon in icons) Object.Destroy(icon.gameObject);
         icons.Clear();
 
-        Region startRegion = RegionHandler.Regions.Find(x => x.GetFullName() == "V01");
+        if (!RegionsHandler.I.TryGetFromName("V01", out Region startRegion))
+        {
+            Plugin.Logger.LogError("Could not find region to start from");
+            return;
+        }
         List<ALocation> reachableLocations = RandomSearch.GetReachableLocations(
             RandomState.Instance.FoundItems, RandomState.Instance.FoundEvents, RandomState.Instance.Cousins.Count, startRegion.transitions[0], (_) => false, out _
         );

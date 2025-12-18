@@ -1,6 +1,6 @@
 ﻿using CheatMenu.Classes;
 using Constance;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Transitions;
 using RandomizerCore.Classes.Storage.Transitions.Types;
 using UnityEngine;
@@ -91,7 +91,7 @@ public class TransitionSoloPage : SoloGUIPage
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Transition Link is null");
-                if (GUILayout.Button("Load Region")) StartCoroutine(RegionHandler.LoadLevel(ATransition.GetRegion()));
+                if (GUILayout.Button("Load Region")) StartCoroutine(RegionsHandler.I.LoadLevel(ATransition.GetRegion()));
                 GUILayout.EndHorizontal();
             }
 
@@ -114,7 +114,7 @@ public class TransitionSoloPage : SoloGUIPage
             if (GUILayout.Button((savedData.doOverrideTransition ? "Jank " : "") + "Teleport")) StartCoroutine(PageHelpers.LoadTransition((Transition)ATransition));
         }
 
-        RegionHandler.SaveSaveData(savedData, log: false);
+        TransitionsHandler.I.SaveSaveData(savedData, log: false);
     }
 
 

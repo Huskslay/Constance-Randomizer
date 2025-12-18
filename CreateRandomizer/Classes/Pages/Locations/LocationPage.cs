@@ -1,5 +1,5 @@
 ﻿using CheatMenu.Classes;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Regions;
 using UnityEngine;
@@ -29,13 +29,13 @@ public class LocationPage : GUIPage
 
     public override void UpdateOpen()
     {
-        if (RegionHandler.Regions == null || RegionHandler.Regions.Count == 0)
+        if (RegionsHandler.I.IsEmpty())
         {
             GUILayout.Label("No regions loaded");
             return;
         }
 
-        Region region = GUIElements.ListValue("Regions", null, RegionHandler.Regions,
+        Region region = GUIElements.ListValue("Regions", null, RegionsHandler.I.GetAll(),
             (_, t2, _) => t2 != null && t2 == soloPage.Region, t => t == null ? "null" : t.GetFullName(), 4, setColor: NotSelectedColor);
         if (region != null) soloPage.Open(region);
     }

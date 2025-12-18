@@ -4,6 +4,7 @@ using Randomizer.Classes.Random;
 using Randomizer.Classes.Random.Generation;
 using Randomizer.Classes.UI.Elements;
 using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.State;
 using System.Collections;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class ConStateAbility_Player_Transition_Patch
         // Load level and set player to start
         yield return new WaitUntil(() => !transitionManager.IsRunning);
         yield return new WaitForSeconds(0.1f);
-        yield return RegionHandler.LoadLevel(RandomSearch.startCheckpointId, player);
+        yield return RegionsHandler.I.LoadLevel(RandomSearch.startCheckpointId, player);
         player.transform.position += new Vector3(50, 0, 0);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using CheatMenu.Classes;
 using Constance;
-using RandomizerCore.Classes.Handlers;
+using RandomizerCore.Classes.Handlers.SaveDataOwners.Types;
 using RandomizerCore.Classes.Storage.Locations;
 using RandomizerCore.Classes.Storage.Requirements.Entries;
 using RandomizerCore.Classes.Storage.Requirements.IRequirements.Types;
@@ -22,18 +22,18 @@ public static class PageHelpers
     {
         if (transition.GetSavedData().doOverrideTransition)
         {
-            yield return RegionHandler.LoadLevel(transition.GetRegion());
+            yield return RegionsHandler.I.LoadLevel(transition.GetRegion());
 
             CConTeleportPoint tp = Plugin.FindObjectsByType<CConTeleportPoint>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList().Find(x => x.teleportTo.StringValue == transition.teleportToCheckPoint);
 
             CConPlayerEntity player = Plugin.FindFirstObjectByType<CConPlayerEntity>();
             player.transform.position = tp.transform.position;
         }
-        else yield return RegionHandler.LoadLevel(new ConCheckPointId(transition.GetLinkedTransition().teleportToCheckPoint));
+        else yield return RegionsHandler.I.LoadLevel(new ConCheckPointId(transition.GetLinkedTransition().teleportToCheckPoint));
     }
     public static IEnumerator LoadTransition(ElevatorTransition transition)
     {
-        yield return RegionHandler.LoadLevel(transition.GetRegion());
+        yield return RegionsHandler.I.LoadLevel(transition.GetRegion());
 
         CConElevatorBehaviour tp = Plugin.FindFirstObjectByType<CConElevatorBehaviour>();
 
@@ -45,7 +45,7 @@ public static class PageHelpers
 
     public static IEnumerator LoadLocation(ALocation location, Func<List<MonoBehaviour>> getLocations)
     {
-        yield return RegionHandler.LoadLevel(location.GetRegion());
+        yield return RegionsHandler.I.LoadLevel(location.GetRegion());
 
         List<MonoBehaviour> behaviours = getLocations();
         MonoBehaviour tp = behaviours.Find(x => x.name == location.goName);
@@ -85,7 +85,7 @@ public static class PageHelpers
 
     public static void DrawRequirement(ref TransitionRequirement requirement, MonoBehaviour page)
     {
-        if (GUILayout.Button("Teleport") && RegionHandler.TryGetTransitionFromName(requirement.transition, out Transition goal))
+        if (GUILayout.Button("Teleport") && RegionsHandler.I.TryGetTransitionFromName(requirement.transition, out Transition goal))
             page.StartCoroutine(LoadTransition(goal));
 
         requirement.possible = GUIElements.BoolValue("Possible", requirement.possible);
@@ -157,7 +157,7 @@ public static class PageHelpers
             }
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("Teleport") && RegionHandler.TryGetTransitionFromName(requirement.transition, out goal))
+            if (GUILayout.Button("Teleport") && RegionsHandler.I.TryGetTransitionFromName(requirement.transition, out goal))
                 page.StartCoroutine(LoadTransition(goal));
         }
     }
